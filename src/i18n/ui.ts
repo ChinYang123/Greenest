@@ -21,9 +21,9 @@ export const ui = {
     'nav.home': 'Home',
     'nav.products': 'Products',
     'nav.vertical': 'Vertical Garden',
-    'nav.roof': 'Roof Garden Service',
-    'nav.community': 'Community Program',
-    'nav.design': 'Design Your Garden',
+    'nav.roof': 'Roof Gardens',
+    'nav.community': 'Community',
+    'nav.design': 'Garden Designer',
     'nav.gallery': 'Gallery',
     'nav.blog': 'Blog',
     'nav.consultation': 'Book Consultation',
@@ -145,7 +145,7 @@ export const ui = {
     'contact.email': 'Email',
     'contact.phone': 'Phone',
     'contact.address': 'Address',
-    'contact.addressValue': 'Kuala Lumpur, Malaysia',
+    'contact.addressValue': 'Multimedia University, Persiaran Multimedia, 63100 Cyberjaya, Selangor, Malaysia',
 
     // about
     'about.title': 'About CityGarden',
@@ -208,9 +208,9 @@ export const ui = {
     'nav.home': '首页',
     'nav.products': '产品',
     'nav.vertical': '垂直园艺',
-    'nav.roof': '屋顶花园服务',
-    'nav.community': '社区花园项目',
-    'nav.design': '设计你的花园',
+    'nav.roof': '屋顶花园',
+    'nav.community': '社区花园',
+    'nav.design': '花园设计器',
     'nav.gallery': '作品图库',
     'nav.blog': '博客',
     'nav.consultation': '预约咨询',
@@ -332,7 +332,7 @@ export const ui = {
     'contact.email': '邮箱',
     'contact.phone': '电话',
     'contact.address': '地址',
-    'contact.addressValue': '马来西亚吉隆坡',
+    'contact.addressValue': '马来西亚雪兰莪 63100 赛城多媒体大学',
 
     // about
     'about.title': '关于 CityGarden',
