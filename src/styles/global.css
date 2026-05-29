@@ -112,7 +112,7 @@ main { min-height: 60vh; }
   flex-wrap: nowrap;
 }
 .logo { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading); font-weight: 800; font-size: 1.45rem; color: var(--primary); white-space: nowrap; flex-shrink: 0; }
-.nav-links { display: flex; gap: 1.15rem; flex-wrap: nowrap; }
+.nav-links { display: flex; gap: 0.65rem; flex-wrap: nowrap; }
 .nav-links a { font-weight: 500; color: var(--text-muted); font-size: 0.9rem; white-space: nowrap; }
 .nav-links a:hover, .nav-links a.active { color: var(--primary); }
 .nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
@@ -407,6 +407,12 @@ section { padding: clamp(3.5rem, 2rem + 6vw, 6rem) 0; }
 .hidden { display: none !important; }
 
 /* Responsive */
+/* Collapse the full nav to the hamburger when it can't fit one line,
+   so the header is always exactly one line. */
+@media (max-width: 1200px) {
+  .nav-links, .nav-actions .btn, .nav-actions .lang-switch { display: none; }
+  .mobile-menu-btn { display: block; }
+}
 @media (max-width: 1024px) {
   .hero-container { grid-template-columns: 1fr; max-width: 640px; margin: 0 auto; }
   .hero-content p { max-width: 100%; }
@@ -415,8 +421,6 @@ section { padding: clamp(3.5rem, 2rem + 6vw, 6rem) 0; }
   .benefits-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
-  .nav-links, .nav-actions .btn, .nav-actions .lang-switch { display: none; }
-  .mobile-menu-btn { display: block; }
   .grid-2, .grid-3, .blog-grid, .team-grid, .steps-grid, .benefits-grid, .result { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }

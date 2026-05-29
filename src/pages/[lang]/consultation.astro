@@ -16,12 +16,58 @@ const fields = [
   { name: 'date', label: t('form.date'), type: 'date' as const, required: false },
   { name: 'message', label: t('form.message'), type: 'textarea' as const, required: false },
 ];
+
+const steps = lang === 'zh'
+  ? [
+      { icon: 'message-circle', title: '1. 告诉我们你的空间', desc: '填写简单表单，描述你的阳台、屋顶或室内空间和目标。' },
+      { icon: 'clipboard-list', title: '2. 获得定制方案', desc: '我们的顾问 1–2 个工作日内联系你，给出植物与套装建议。' },
+      { icon: 'sprout', title: '3. 安装与陪伴', desc: '确认后我们协助安装，并提供持续的养护支持。' },
+    ]
+  : [
+      { icon: 'message-circle', title: '1. Tell us about your space', desc: 'Fill in a quick form describing your balcony, rooftop, or indoor space and goals.' },
+      { icon: 'clipboard-list', title: '2. Get a tailored plan', desc: 'A specialist reaches out within 1–2 business days with plant and kit recommendations.' },
+      { icon: 'sprout', title: '3. Build & support', desc: 'Once you confirm, we help install your garden and support you with ongoing care.' },
+    ];
+const faqs = lang === 'zh'
+  ? [
+      { q: '咨询收费吗？', a: '首次咨询完全免费，无任何义务。' },
+      { q: '需要准备什么？', a: '知道大致的空间尺寸和日照情况就够了，其余交给我们。' },
+      { q: '可以线上进行吗？', a: '可以。我们提供视频咨询，也可上门评估。' },
+    ]
+  : [
+      { q: 'Is the consultation free?', a: 'Yes — your first consultation is completely free with no obligation.' },
+      { q: 'What should I prepare?', a: 'Just a rough idea of your space size and sunlight. We handle the rest.' },
+      { q: 'Can it be done online?', a: 'Absolutely. We offer video consultations as well as on-site visits.' },
+    ];
 ---
 <BaseLayout title={t('consult.title')} description={t('consult.subtitle')}>
   <PageHeader title={t('consult.title')} subtitle={t('consult.subtitle')} />
+
   <section>
     <div class="container">
+      <div class="grid grid-3">
+        {steps.map((s) => (
+          <div class="feature-card">
+            <div class="icon-wrapper"><i data-lucide={s.icon}></i></div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--surface">
+    <div class="container">
       <MockForm title={t('consult.formTitle')} fields={fields} submitLabel={t('btn.book')} />
+      <div class="faq-list">
+        {faqs.map((f) => (
+          <details class="faq-item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>
