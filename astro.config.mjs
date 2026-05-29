@@ -9,6 +9,9 @@ export default defineConfig({
     locales: ['en', 'zh'],
     routing: {
       prefixDefaultLocale: true,
+      // Let our own src/pages/index.astro handle "/" with a host-relative
+      // redirect instead of Astro emitting an absolute (site-based) one.
+      redirectToDefaultLocale: false,
     },
   },
 });

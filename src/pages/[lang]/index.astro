@@ -39,19 +39,19 @@ const productsPath = getLocalizedPath('/products', lang);
   <header id="hero" class="hero-section">
     <div class="container hero-container">
       <div class="hero-content">
-        <div class="badge">{t('home.badge')}</div>
-        <h1>{t('home.heroTitle')} <span class="highlight">{t('home.heroTitleAccent')}</span></h1>
-        <p>{t('home.heroDesc')}</p>
-        <div class="hero-buttons">
+        <div class="badge" data-hero-reveal>{t('home.badge')}</div>
+        <h1 data-hero-reveal>{t('home.heroTitle')} <span class="highlight">{t('home.heroTitleAccent')}</span></h1>
+        <p data-hero-reveal>{t('home.heroDesc')}</p>
+        <div class="hero-buttons" data-hero-reveal>
           <a href={designPath} class="btn btn-primary">{t('btn.tryDesigner')}</a>
           <a href={productsPath} class="btn btn-secondary">{t('btn.explore')}</a>
         </div>
-        <div class="stats">
+        <div class="stats" data-hero-reveal>
           <div class="stat-item"><span class="stat-value">{t('home.stat1Value')}</span><span class="stat-label">{t('home.stat1Label')}</span></div>
           <div class="stat-item"><span class="stat-value">{t('home.stat2Value')}</span><span class="stat-label">{t('home.stat2Label')}</span></div>
         </div>
       </div>
-      <div class="hero-card-wrapper">
+      <div class="hero-card-wrapper" data-hero-reveal>
         <div class="ai-card">
           <div class="card-header"><i data-lucide="bot"></i><h3>{t('cfg.title')}</h3></div>
           <div class="input-details">
