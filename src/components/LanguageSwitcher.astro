@@ -1,0 +1,9 @@
+---
+import { getLangFromUrl, switchLangPath } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const path = Astro.url.pathname;
+---
+<div class="lang-switch">
+  <a href={switchLangPath(path, 'en')} class={lang === 'en' ? 'active' : ''} hreflang="en">EN</a>
+  <a href={switchLangPath(path, 'zh')} class={lang === 'zh' ? 'active' : ''} hreflang="zh">中</a>
+</div>

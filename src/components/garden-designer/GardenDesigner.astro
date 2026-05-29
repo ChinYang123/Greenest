@@ -1,0 +1,77 @@
+---
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const spaceOpts = [
+  { v: 'balcony', emoji: '🏠', label: t('cfg.space.balcony') },
+  { v: 'rooftop', emoji: '🏙️', label: t('cfg.space.rooftop') },
+  { v: 'indoor', emoji: '🛋️', label: t('cfg.space.indoor') },
+];
+const sizeOpts = [
+  { v: 'small', emoji: '🤏', label: t('cfg.size.small') },
+  { v: 'medium', emoji: '📐', label: t('cfg.size.medium') },
+  { v: 'large', emoji: '🌳', label: t('cfg.size.large') },
+];
+const sunOpts = [
+  { v: 'full', emoji: '☀️', label: t('cfg.sun.full') },
+  { v: 'partial', emoji: '⛅', label: t('cfg.sun.partial') },
+  { v: 'low', emoji: '🌥️', label: t('cfg.sun.low') },
+];
+const goalOpts = [
+  { v: 'vegetables', emoji: '🥬', label: t('cfg.goal.vegetables') },
+  { v: 'flowers', emoji: '🌸', label: t('cfg.goal.flowers') },
+  { v: 'decorative', emoji: '🪴', label: t('cfg.goal.decorative') },
+  { v: 'mixed', emoji: '🌈', label: t('cfg.goal.mixed') },
+];
+const groups = [
+  { key: 'space', legend: t('cfg.spaceType'), opts: spaceOpts },
+  { key: 'size', legend: t('cfg.size'), opts: sizeOpts },
+  { key: 'sunlight', legend: t('cfg.sunlight'), opts: sunOpts },
+  { key: 'goal', legend: t('cfg.goal'), opts: goalOpts },
+];
+---
+<div class="designer" id="garden-designer">
+  <div class="designer-card" data-step="form">
+    {groups.map((g) => (
+      <fieldset data-group={g.key}>
+        <legend>{g.legend}</legend>
+        <div class="option-grid">
+          {g.opts.map((o) => (
+            <div class="option" data-value={o.v} role="button" tabindex="0">
+              <span class="opt-emoji">{o.emoji}</span>{o.label}
+            </div>
+          ))}
+        </div>
+      </fieldset>
+    ))}
+    <fieldset>
+      <legend>{t('cfg.budget')}</legend>
+      <div class="budget-row">
+        <input type="range" min="100" max="2000" step="50" value="600" data-budget aria-label={t('cfg.budget')} />
+        <span class="budget-value" data-budget-value>RM600</span>
+      </div>
+    </fieldset>
+    <p class="field-error hidden" data-validation style="display:block;">{t('common.required')}</p>
+    <button type="button" class="btn btn-primary btn-large full-width" data-generate>
+      <i data-lucide="sparkles"></i> {t('btn.generate')}
+    </button>
+  </div>
+
+  <div class="designer-card analyzing hidden" data-step="analyze">
+    <div class="scanner"></div>
+    <p>{t('cfg.analyzing')}</p>
+  </div>
+
+  <div class="hidden" data-step="result">
+    <h2 class="section-title text-center" style="margin-bottom:2rem;">{t('cfg.resultTitle')}</h2>
+    <div class="result" data-result></div>
+  </div>
+</div>
+
+<script>
+  import { initDesigner } from './designer';
+  const start = () => initDesigner();
+  if (document.readyState !== 'loading') start();
+  else document.addEventListener('DOMContentLoaded', start);
+</script>

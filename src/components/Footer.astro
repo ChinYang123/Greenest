@@ -1,0 +1,47 @@
+---
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const year = 2026;
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <a href={getLocalizedPath('/', lang)} class="logo">
+          <i data-lucide="leaf"></i><span>GreenNest</span>
+        </a>
+        <p>{t('home.heroDesc')}</p>
+        <p class="parent">{t('brand.parent')}</p>
+        <div class="social-links">
+          <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4>{t('nav.home')}</h4>
+        <a href={getLocalizedPath('/products', lang)}>{t('nav.products')}</a>
+        <a href={getLocalizedPath('/design-your-garden', lang)}>{t('nav.design')}</a>
+        <a href={getLocalizedPath('/gallery', lang)}>{t('nav.gallery')}</a>
+        <a href={getLocalizedPath('/blog', lang)}>{t('nav.blog')}</a>
+      </div>
+      <div class="footer-links">
+        <h4>{t('nav.about')}</h4>
+        <a href={getLocalizedPath('/about', lang)}>{t('nav.about')}</a>
+        <a href={getLocalizedPath('/roof-garden', lang)}>{t('nav.roof')}</a>
+        <a href={getLocalizedPath('/community', lang)}>{t('nav.community')}</a>
+        <a href={getLocalizedPath('/consultation', lang)}>{t('nav.consultation')}</a>
+      </div>
+      <div class="footer-contact">
+        <h4>{t('nav.contact')}</h4>
+        <p><i data-lucide="mail"></i> hello@greennest.example</p>
+        <p><i data-lucide="phone"></i> +60 12-345 6789</p>
+        <p><i data-lucide="map-pin"></i> {t('contact.addressValue')}</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {year} GreenNest · CityGarden Sdn Bhd. {t('common.allRights')}</p>
+    </div>
+  </div>
+</footer>

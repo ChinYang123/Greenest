@@ -1,0 +1,20 @@
+{
+  "name": "greennest",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "GreenNest — Sustainable Urban Gardening Platform (by CityGarden)",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "typescript": "^5.9.3"
+  }
+}

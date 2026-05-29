@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
+import { team } from '../../data/team';
+
+export const getStaticPaths = langStaticPaths;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<BaseLayout title={t('about.title')} description={t('about.subtitle')}>
+  <PageHeader title={t('about.title')} subtitle={t('about.subtitle')} />
+  <section>
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-card">
+          <h3>{t('about.missionTitle')}</h3>
+          <p>{t('about.mission')}</p>
+        </div>
+        <div class="mission-card">
+          <h3>{t('about.visionTitle')}</h3>
+          <p>{t('about.vision')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section--surface">
+    <div class="container">
+      <SectionHeader title={t('about.teamTitle')} />
+      <div class="team-grid">
+        {team.map((m) => (
+          <div class="team-card">
+            <div class="avatar">{m.initials}</div>
+            <h4>{m.name[lang]}</h4>
+            <div class="role">{m.role[lang]}</div>
+            <p>{m.bio[lang]}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

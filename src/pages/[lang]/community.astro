@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MockForm from '../../components/MockForm.astro';
+import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
+
+export const getStaticPaths = langStaticPaths;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const points = lang === 'zh'
+  ? [
+      { icon: 'map', title: '规划设计', desc: '为你的小区量身规划公共绿地布局。' },
+      { icon: 'users', title: '居民参与', desc: '组织讲座与活动，带动邻里一起动手。' },
+      { icon: 'heart-handshake', title: '长期养护', desc: '提供持续养护与季节种植建议。' },
+    ]
+  : [
+      { icon: 'map', title: 'Planning & design', desc: 'A tailored layout for your neighborhood\'s shared green space.' },
+      { icon: 'users', title: 'Resident engagement', desc: 'Talks and events that get neighbors growing together.' },
+      { icon: 'heart-handshake', title: 'Ongoing care', desc: 'Continuous maintenance and seasonal planting guidance.' },
+    ];
+const fields = [
+  { name: 'name', label: t('form.name'), type: 'text' as const, required: true },
+  { name: 'email', label: t('form.email'), type: 'email' as const, required: true },
+  { name: 'community', label: t('form.community'), type: 'text' as const, required: true },
+  { name: 'units', label: t('form.units'), type: 'text' as const, required: false },
+  { name: 'message', label: t('form.message'), type: 'textarea' as const, required: false },
+];
+---
+<BaseLayout title={t('community.title')} description={t('community.subtitle')}>
+  <PageHeader title={t('community.title')} subtitle={t('community.subtitle')} />
+  <section>
+    <div class="container">
+      <div class="grid grid-3">
+        {points.map((p) => (
+          <div class="feature-card">
+            <div class="icon-wrapper"><i data-lucide={p.icon}></i></div>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section--surface">
+    <div class="container">
+      <SectionHeader title={t('community.formTitle')} />
+      <MockForm fields={fields} submitLabel={t('btn.register')} />
+    </div>
+  </section>
+</BaseLayout>

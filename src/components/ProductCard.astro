@@ -1,0 +1,38 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { priceLabel, type Product } from '../data/products';
+
+interface Props {
+  product: Product;
+}
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { product } = Astro.props;
+const emojiByFit = product.fits.includes('rooftop') && product.priceRM === 0 ? '🏙️' : product.featured ? '🌿' : '🪴';
+---
+<div class={`product-card${product.featured ? ' featured' : ''}`}>
+  {product.featured && <div class="popular-badge">{t('products.popular')}</div>}
+  <div class="product-img">{emojiByFit}</div>
+  <div class="product-info">
+    <h3>{product.name[lang]}</h3>
+    <p>{product.tagline[lang]}</p>
+    <div class="price">{priceLabel(product, lang)}</div>
+    {product.priceRM === 0 ? (
+      <a href={`/${lang}/contact`} class="btn btn-outline full-width">{t('btn.contact')}</a>
+    ) : (
+      <button
+        class="btn btn-primary full-width add-to-cart"
+        data-toast={t('common.toastCart')}
+        type="button"
+      >
+        {t('btn.buy')}
+      </button>
+    )}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.add-to-cart').forEach((btn) => {
+    btn.addEventListener('click', () => window.showToast?.(btn.dataset.toast || 'Added to cart'));
+  });
+</script>

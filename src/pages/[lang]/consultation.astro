@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import MockForm from '../../components/MockForm.astro';
+import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
+
+export const getStaticPaths = langStaticPaths;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const fields = [
+  { name: 'name', label: t('form.name'), type: 'text' as const, required: true },
+  { name: 'email', label: t('form.email'), type: 'email' as const, required: true },
+  { name: 'phone', label: t('form.phone'), type: 'tel' as const, required: true },
+  { name: 'spaceType', label: t('form.spaceType'), type: 'select' as const, required: true, options: [t('cfg.space.balcony'), t('cfg.space.rooftop'), t('cfg.space.indoor')] },
+  { name: 'date', label: t('form.date'), type: 'date' as const, required: false },
+  { name: 'message', label: t('form.message'), type: 'textarea' as const, required: false },
+];
+---
+<BaseLayout title={t('consult.title')} description={t('consult.subtitle')}>
+  <PageHeader title={t('consult.title')} subtitle={t('consult.subtitle')} />
+  <section>
+    <div class="container">
+      <MockForm title={t('consult.formTitle')} fields={fields} submitLabel={t('btn.book')} />
+    </div>
+  </section>
+</BaseLayout>

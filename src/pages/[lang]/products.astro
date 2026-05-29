@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
+import { products } from '../../data/products';
+
+export const getStaticPaths = langStaticPaths;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<BaseLayout title={t('products.title')} description={t('products.subtitle')}>
+  <PageHeader title={t('products.title')} subtitle={t('products.subtitle')} />
+  <section>
+    <div class="container">
+      <div class="grid grid-3">
+        {products.map((p) => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,73 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+export interface FormField {
+  name: string;
+  label: string;
+  type?: 'text' | 'email' | 'tel' | 'date' | 'textarea' | 'select';
+  required?: boolean;
+  options?: string[];
+}
+
+interface Props {
+  title?: string;
+  fields: FormField[];
+  submitLabel: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { title, fields, submitLabel } = Astro.props;
+const requiredMsg = t('common.required');
+const successMsg = t('common.toastSuccess');
+const optional = t('common.optional');
+---
+<form class="form-card mock-form" novalidate data-success={successMsg}>
+  {title && <h3 style="margin-bottom:1.5rem;">{title}</h3>}
+  {fields.map((f) => (
+    <div class="form-group" data-required={f.required ? 'true' : 'false'}>
+      <label for={f.name}>
+        {f.label}{!f.required && <span style="color:var(--text-muted);font-weight:400;"> ({optional})</span>}
+      </label>
+      {f.type === 'textarea' ? (
+        <textarea id={f.name} name={f.name} aria-required={f.required ? 'true' : 'false'}></textarea>
+      ) : f.type === 'select' ? (
+        <select id={f.name} name={f.name} aria-required={f.required ? 'true' : 'false'}>
+          <option value="">—</option>
+          {(f.options ?? []).map((o) => <option value={o}>{o}</option>)}
+        </select>
+      ) : (
+        <input type={f.type ?? 'text'} id={f.name} name={f.name} aria-required={f.required ? 'true' : 'false'} />
+      )}
+      <span class="field-error">{requiredMsg}</span>
+    </div>
+  ))}
+  <button type="submit" class="btn btn-primary full-width">{submitLabel}</button>
+</form>
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('.mock-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+      form.querySelectorAll<HTMLElement>('.form-group').forEach((group) => {
+        if (group.dataset.required !== 'true') return;
+        const control = group.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+          'input, select, textarea'
+        );
+        if (control && !control.value.trim()) {
+          group.classList.add('invalid');
+          valid = false;
+        } else {
+          group.classList.remove('invalid');
+        }
+      });
+      if (!valid) return;
+      form.reset();
+      window.showToast?.(form.dataset.success || 'Submitted');
+    });
+    form.querySelectorAll('input, select, textarea').forEach((c) =>
+      c.addEventListener('input', () => c.closest('.form-group')?.classList.remove('invalid'))
+    );
+  });
+</script>

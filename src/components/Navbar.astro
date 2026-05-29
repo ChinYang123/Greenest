@@ -1,0 +1,82 @@
+---
+import { getLangFromUrl, useTranslations, getLocalizedPath } from '../i18n/utils';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const path = Astro.url.pathname;
+
+const links = [
+  { href: getLocalizedPath('/', lang), label: t('nav.home') },
+  { href: getLocalizedPath('/products', lang), label: t('nav.products') },
+  { href: getLocalizedPath('/roof-garden', lang), label: t('nav.roof') },
+  { href: getLocalizedPath('/community', lang), label: t('nav.community') },
+  { href: getLocalizedPath('/design-your-garden', lang), label: t('nav.design') },
+  { href: getLocalizedPath('/gallery', lang), label: t('nav.gallery') },
+  { href: getLocalizedPath('/blog', lang), label: t('nav.blog') },
+  { href: getLocalizedPath('/about', lang), label: t('nav.about') },
+];
+const isActive = (href: string) =>
+  href === getLocalizedPath('/', lang) ? path === href : path.startsWith(href);
+---
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href={getLocalizedPath('/', lang)} class="logo">
+      <i data-lucide="leaf"></i>
+      <span>GreenNest</span>
+    </a>
+    <div class="nav-links">
+      {links.map((l) => <a href={l.href} class={isActive(l.href) ? 'active' : ''}>{l.label}</a>)}
+    </div>
+    <div class="nav-actions">
+      <LanguageSwitcher />
+      <a href={getLocalizedPath('/consultation', lang)} class="btn btn-outline">{t('nav.consultation')}</a>
+      <button class="mobile-menu-btn" id="menuBtn" aria-label={t('nav.menu')} aria-expanded="false">
+        <i data-lucide="menu"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+  <div class="drawer-head">
+    <span class="logo"><i data-lucide="leaf"></i> GreenNest</span>
+    <button class="drawer-close" id="drawerClose" aria-label={t('nav.close')}><i data-lucide="x"></i></button>
+  </div>
+  {links.map((l) => <a href={l.href}>{l.label}</a>)}
+  <a href={getLocalizedPath('/consultation', lang)}>{t('nav.consultation')}</a>
+  <a href={getLocalizedPath('/contact', lang)}>{t('nav.contact')}</a>
+  <div style="margin-top:1rem;"><LanguageSwitcher /></div>
+</aside>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  const menuBtn = document.getElementById('menuBtn');
+  const drawer = document.getElementById('mobileDrawer');
+  const backdrop = document.getElementById('drawerBackdrop');
+  const closeBtn = document.getElementById('drawerClose');
+
+  const openDrawer = () => {
+    drawer?.classList.add('open');
+    backdrop?.classList.add('open');
+    drawer?.setAttribute('aria-hidden', 'false');
+    menuBtn?.setAttribute('aria-expanded', 'true');
+  };
+  const closeDrawer = () => {
+    drawer?.classList.remove('open');
+    backdrop?.classList.remove('open');
+    drawer?.setAttribute('aria-hidden', 'true');
+    menuBtn?.setAttribute('aria-expanded', 'false');
+  };
+
+  menuBtn?.addEventListener('click', openDrawer);
+  closeBtn?.addEventListener('click', closeDrawer);
+  backdrop?.addEventListener('click', closeDrawer);
+  drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeDrawer));
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) navbar?.classList.add('scrolled');
+    else navbar?.classList.remove('scrolled');
+  });
+</script>

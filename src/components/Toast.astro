@@ -1,0 +1,25 @@
+---
+// Shared toast. Call window.showToast('message') from any client script.
+---
+<div class="toast" id="globalToast" role="status" aria-live="polite">
+  <i data-lucide="check-circle-2"></i>
+  <span id="toastMsg"></span>
+</div>
+
+<script>
+  declare global {
+    interface Window {
+      showToast: (msg: string) => void;
+    }
+  }
+  const toast = document.getElementById('globalToast');
+  const msgEl = document.getElementById('toastMsg');
+  let timer: number | undefined;
+  window.showToast = (msg: string) => {
+    if (!toast || !msgEl) return;
+    msgEl.textContent = msg;
+    toast.classList.add('show');
+    if (timer) window.clearTimeout(timer);
+    timer = window.setTimeout(() => toast.classList.remove('show'), 3200);
+  };
+</script>

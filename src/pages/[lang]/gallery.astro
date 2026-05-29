@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
+
+export const getStaticPaths = langStaticPaths;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const items = lang === 'zh'
+  ? [
+      { emoji: '🪴', label: '阳台垂直花园', c: 'linear-gradient(135deg,#4CAF50,#2E7D32)' },
+      { emoji: '🍅', label: '阳台菜园', c: 'linear-gradient(135deg,#66BB6A,#388E3C)' },
+      { emoji: '🏙️', label: '咖啡馆屋顶', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
+      { emoji: '🌸', label: '社区花圃', c: 'linear-gradient(135deg,#81C784,#43A047)' },
+      { emoji: '🌿', label: '室内香草角', c: 'linear-gradient(135deg,#A5D6A7,#2E7D32)' },
+      { emoji: '🌻', label: '屋顶花田', c: 'linear-gradient(135deg,#4CAF50,#1B5E20)' },
+    ]
+  : [
+      { emoji: '🪴', label: 'Balcony vertical garden', c: 'linear-gradient(135deg,#4CAF50,#2E7D32)' },
+      { emoji: '🍅', label: 'Balcony veggie patch', c: 'linear-gradient(135deg,#66BB6A,#388E3C)' },
+      { emoji: '🏙️', label: 'Cafe rooftop', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
+      { emoji: '🌸', label: 'Community flower beds', c: 'linear-gradient(135deg,#81C784,#43A047)' },
+      { emoji: '🌿', label: 'Indoor herb corner', c: 'linear-gradient(135deg,#A5D6A7,#2E7D32)' },
+      { emoji: '🌻', label: 'Rooftop flower field', c: 'linear-gradient(135deg,#4CAF50,#1B5E20)' },
+    ];
+---
+<BaseLayout title={t('gallery.title')} description={t('gallery.subtitle')}>
+  <PageHeader title={t('gallery.title')} subtitle={t('gallery.subtitle')} />
+  <section>
+    <div class="container">
+      <div class="gallery-grid">
+        {items.map((it) => (
+          <div class="gallery-item" style={`background:${it.c}`}>
+            {it.emoji}
+            <span class="label">{it.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

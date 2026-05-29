@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getLangFromUrl, useTranslations, getLocalizedPath, langStaticPaths } from '../../i18n/utils';
+import { products } from '../../data/products';
+
+export const getStaticPaths = langStaticPaths;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const problems = [
+  { icon: 'layout-grid', title: t('home.problem1Title'), desc: t('home.problem1Desc') },
+  { icon: 'sprout', title: t('home.problem2Title'), desc: t('home.problem2Desc') },
+  { icon: 'droplet', title: t('home.problem3Title'), desc: t('home.problem3Desc') },
+];
+const benefits = [
+  { icon: 'globe', title: t('home.benefit1Title'), desc: t('home.benefit1Desc') },
+  { icon: 'cpu', title: t('home.benefit2Title'), desc: t('home.benefit2Desc') },
+  { icon: 'pen-tool', title: t('home.benefit3Title'), desc: t('home.benefit3Desc') },
+  { icon: 'users', title: t('home.benefit4Title'), desc: t('home.benefit4Desc') },
+];
+const testimonials = lang === 'zh'
+  ? [
+      { initial: 'S', name: '李莎拉', role: '公寓住户', quote: '“我从没想过能在 5 楼公寓种出自己的番茄。设计器让一切变得万无一失！”' },
+      { initial: 'M', name: '陈马库斯', role: '咖啡馆屋顶业主', quote: '“GreenNest 把我们荒芜的屋顶变成了郁郁葱葱的香草花园，顾客都很喜欢。”' },
+      { initial: 'E', name: '罗雷娜', role: '社区组织者', quote: '“社区支持和易维护套件帮我们成功启动了邻里花园。”' },
+    ]
+  : [
+      { initial: 'S', name: 'Sarah Lee', role: 'Apartment Owner', quote: '"I never thought I could grow my own tomatoes in a 5th-floor apartment. The designer made it foolproof!"' },
+      { initial: 'M', name: 'Marcus Chen', role: 'Cafe Rooftop Owner', quote: '"GreenNest transformed our barren rooftop into a lush herb garden. Our customers love it."' },
+      { initial: 'E', name: 'Elena Rodriguez', role: 'Community Organizer', quote: '"The community support and easy-maintenance kits helped us launch our neighborhood garden."' },
+    ];
+const designPath = getLocalizedPath('/design-your-garden', lang);
+const productsPath = getLocalizedPath('/products', lang);
+---
+<BaseLayout>
+  <header id="hero" class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="badge">{t('home.badge')}</div>
+        <h1>{t('home.heroTitle')} <span class="highlight">{t('home.heroTitleAccent')}</span></h1>
+        <p>{t('home.heroDesc')}</p>
+        <div class="hero-buttons">
+          <a href={designPath} class="btn btn-primary">{t('btn.tryDesigner')}</a>
+          <a href={productsPath} class="btn btn-secondary">{t('btn.explore')}</a>
+        </div>
+        <div class="stats">
+          <div class="stat-item"><span class="stat-value">{t('home.stat1Value')}</span><span class="stat-label">{t('home.stat1Label')}</span></div>
+          <div class="stat-item"><span class="stat-value">{t('home.stat2Value')}</span><span class="stat-label">{t('home.stat2Label')}</span></div>
+        </div>
+      </div>
+      <div class="hero-card-wrapper">
+        <div class="ai-card">
+          <div class="card-header"><i data-lucide="bot"></i><h3>{t('cfg.title')}</h3></div>
+          <div class="input-details">
+            <div class="detail-item"><span class="label">{t('cfg.spaceType')}</span><span class="value">{t('cfg.space.balcony')}</span></div>
+            <div class="detail-item"><span class="label">{t('cfg.sunlight')}</span><span class="value">{t('cfg.sun.partial')}</span></div>
+            <div class="detail-item"><span class="label">{t('cfg.goal')}</span><span class="value">{t('cfg.goal.vegetables')}</span></div>
+          </div>
+          <a href={designPath} class="btn btn-primary full-width"><i data-lucide="sparkles"></i> {t('btn.generate')}</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="problem" class="section--surface">
+    <div class="container">
+      <SectionHeader title={t('home.problemTitle')} subtitle={t('home.problemSubtitle')} />
+      <div class="grid grid-3">
+        {problems.map((p) => (
+          <div class="feature-card">
+            <div class="icon-wrapper"><i data-lucide={p.icon}></i></div>
+            <h3>{p.title}</h3>
+            <p>{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="products">
+    <div class="container">
+      <SectionHeader title={t('home.productsTitle')} subtitle={t('products.subtitle')} />
+      <div class="grid grid-3">
+        {products.map((p) => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="benefits-section">
+    <div class="container">
+      <SectionHeader title={t('home.benefitsTitle')} />
+      <div class="benefits-grid">
+        {benefits.map((b) => (
+          <div class="benefit-item">
+            <div class="b-icon"><i data-lucide={b.icon}></i></div>
+            <h4>{b.title}</h4>
+            <p>{b.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--surface">
+    <div class="container">
+      <SectionHeader title={t('home.testimonialsTitle')} />
+      <div class="grid grid-3">
+        {testimonials.map((tm) => (
+          <div class="testimonial-card">
+            <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
+            <p class="quote">{tm.quote}</p>
+            <div class="author">
+              <div class="avatar">{tm.initial}</div>
+              <div class="author-info"><h5>{tm.name}</h5><span>{tm.role}</span></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container text-center">
+      <h2>{t('home.ctaTitle')}</h2>
+      <p>{t('home.ctaDesc')}</p>
+      <a href={designPath} class="btn btn-secondary btn-large">{t('btn.tryDesigner')}</a>
+    </div>
+  </section>
+</BaseLayout>

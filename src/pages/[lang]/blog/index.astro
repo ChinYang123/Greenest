@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import PageHeader from '../../../components/PageHeader.astro';
+import { getLangFromUrl, useTranslations, langStaticPaths } from '../../../i18n/utils';
+import { getCollection } from 'astro:content';
+
+export const getStaticPaths = langStaticPaths;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const all = await getCollection('blog', (e) => e.id.startsWith(`${lang}/`));
+const posts = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
+const slugOf = (id: string) => id.replace(`${lang}/`, '').replace(/\.md$/, '');
+---
+<BaseLayout title={t('blog.title')} description={t('blog.subtitle')}>
+  <PageHeader title={t('blog.title')} subtitle={t('blog.subtitle')} />
+  <section>
+    <div class="container">
+      <div class="blog-filters">
+        <button class="filter-btn active" data-filter="all">{t('blog.all')}</button>
+        <button class="filter-btn" data-filter="blog">{t('blog.blog')}</button>
+        <button class="filter-btn" data-filter="diy">{t('blog.diy')}</button>
+      </div>
+      <div class="blog-grid" id="blogGrid">
+        {posts.map((p) => (
+          <a href={`/${lang}/blog/${slugOf(p.id)}`} class="blog-card" data-category={p.data.category}>
+            <div class="cover">{p.data.emoji}</div>
+            <div class="body">
+              <span class="tag">{p.data.category === 'diy' ? t('blog.diy') : t('blog.blog')}</span>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.description}</p>
+              <span class="date">{fmt(p.data.date)}</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('#blogGrid .blog-card');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach((c) => {
+        const show = filter === 'all' || c.dataset.category === filter;
+        c.style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
