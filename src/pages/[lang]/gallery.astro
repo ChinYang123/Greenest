@@ -9,20 +9,26 @@ const t = useTranslations(lang);
 
 const items = lang === 'zh'
   ? [
-      { emoji: '🪴', label: '阳台垂直花园', c: 'linear-gradient(135deg,#4CAF50,#2E7D32)' },
-      { emoji: '🍅', label: '阳台菜园', c: 'linear-gradient(135deg,#66BB6A,#388E3C)' },
-      { emoji: '🏙️', label: '咖啡馆屋顶', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
-      { emoji: '🌸', label: '社区花圃', c: 'linear-gradient(135deg,#81C784,#43A047)' },
-      { emoji: '🌿', label: '室内香草角', c: 'linear-gradient(135deg,#A5D6A7,#2E7D32)' },
-      { emoji: '🌻', label: '屋顶花田', c: 'linear-gradient(135deg,#4CAF50,#1B5E20)' },
+      { emoji: '🪴', label: '阳台垂直花园 · 蒙吉亚拉', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
+      { emoji: '🍅', label: '阳台菜园 · 蔡厝港', c: 'linear-gradient(135deg,#388E3C,#1B5E20)' },
+      { emoji: '☕', label: '咖啡馆屋顶香草园 · 孟沙', c: 'linear-gradient(135deg,#1B5E20,#2E7D32)' },
+      { emoji: '🌸', label: '社区花圃 · 安邦 PPR', c: 'linear-gradient(135deg,#43A047,#2E7D32)' },
+      { emoji: '🌿', label: '室内香草角 · 石角公寓', c: 'linear-gradient(135deg,#2E7D32,#388E3C)' },
+      { emoji: '🌻', label: '屋顶向日葵花田 · 八打灵', c: 'linear-gradient(135deg,#33691E,#1B5E20)' },
+      { emoji: '🥬', label: '水培叶菜种植 · 吉隆坡城中城公寓', c: 'linear-gradient(135deg,#1B5E20,#33691E)' },
+      { emoji: '🫚', label: '办公室绿化墙 · 吉隆坡国油双峰塔', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
+      { emoji: '🌺', label: '热带花墙 · 白沙罗镇', c: 'linear-gradient(135deg,#388E3C,#2E7D32)' },
     ]
   : [
-      { emoji: '🪴', label: 'Balcony vertical garden', c: 'linear-gradient(135deg,#4CAF50,#2E7D32)' },
-      { emoji: '🍅', label: 'Balcony veggie patch', c: 'linear-gradient(135deg,#66BB6A,#388E3C)' },
-      { emoji: '🏙️', label: 'Cafe rooftop', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
-      { emoji: '🌸', label: 'Community flower beds', c: 'linear-gradient(135deg,#81C784,#43A047)' },
-      { emoji: '🌿', label: 'Indoor herb corner', c: 'linear-gradient(135deg,#A5D6A7,#2E7D32)' },
-      { emoji: '🌻', label: 'Rooftop flower field', c: 'linear-gradient(135deg,#4CAF50,#1B5E20)' },
+      { emoji: '🪴', label: 'Balcony Vertical Garden · Mont Kiara', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
+      { emoji: '🍅', label: 'Balcony Veggie Patch · Cheras', c: 'linear-gradient(135deg,#388E3C,#1B5E20)' },
+      { emoji: '☕', label: 'Café Rooftop Herb Garden · Bangsar', c: 'linear-gradient(135deg,#1B5E20,#2E7D32)' },
+      { emoji: '🌸', label: 'Community Flower Beds · PPR Ampang', c: 'linear-gradient(135deg,#43A047,#2E7D32)' },
+      { emoji: '🌿', label: 'Indoor Herb Corner · Setapak Condo', c: 'linear-gradient(135deg,#2E7D32,#388E3C)' },
+      { emoji: '🌻', label: 'Rooftop Sunflower Field · PJ', c: 'linear-gradient(135deg,#33691E,#1B5E20)' },
+      { emoji: '🥬', label: 'Hydroponic Leafy Greens · KLCC Apt', c: 'linear-gradient(135deg,#1B5E20,#33691E)' },
+      { emoji: '🫚', label: 'Office Green Wall · Menara KL', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
+      { emoji: '🌺', label: 'Tropical Flowering Wall · TTDI', c: 'linear-gradient(135deg,#388E3C,#2E7D32)' },
     ];
 ---
 <BaseLayout title={t('gallery.title')} description={t('gallery.subtitle')}>

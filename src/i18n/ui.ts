@@ -149,11 +149,11 @@ export const ui = {
 
     // about
     'about.title': 'About CityGarden',
-    'about.subtitle': 'GreenNest is the online platform of CityGarden, a Malaysian eco urban-gardening company founded in 2024.',
+    'about.subtitle': 'GreenNest is the consumer platform of CityGarden Sdn Bhd — a Cyberjaya-based urban horticulture company helping Malaysian city dwellers grow food, reduce costs, and reconnect with nature.',
     'about.missionTitle': 'Our Mission',
-    'about.mission': 'To make city living greener and more self-sufficient through sustainable gardening.',
+    'about.mission': 'To make urban gardening accessible to every Malaysian household — regardless of space, experience, or budget — through smart tools, quality kits, and hands-on community support.',
     'about.visionTitle': 'Our Vision',
-    'about.vision': 'To become a leading urban-gardening company in Malaysia and across Asia by 2030.',
+    'about.vision': 'To have 100,000 active urban gardens across Malaysia by 2030, making GreenNest the most trusted name in city horticulture from KL to Jakarta.',
     'about.teamTitle': 'Leadership Team',
 
     // form fields
@@ -197,6 +197,8 @@ export const ui = {
     'cfg.kitNote': 'Closest kit within your budget.',
     'cfg.noPlants': 'No perfect matches — try broadening your sunlight or goal and generate again.',
     'cfg.bookCta': 'Book a consultation',
+    'cfg.inspiration': 'How your garden could look',
+    'cfg.inspirationNote': 'Real reference photos matched to your selection.',
   },
   zh: {
     // brand
@@ -336,11 +338,11 @@ export const ui = {
 
     // about
     'about.title': '关于 CityGarden',
-    'about.subtitle': 'GreenNest 是 CityGarden 的线上平台。CityGarden 是一家 2024 年成立的马来西亚城市环保园艺公司。',
+    'about.subtitle': 'GreenNest 是 CityGarden 有限公司旗下的消费者平台——一家总部位于赛城的城市园艺企业，致力于帮助马来西亚城市居民种植食物、降低生活成本，并重新与自然建立连结。',
     'about.missionTitle': '我们的使命',
-    'about.mission': '通过可持续园艺，让城市生活更环保、更自给自足。',
+    'about.mission': '无论空间大小、经验多少、预算高低，通过智能工具、优质套装与社区支持，让每一个马来西亚家庭都能轻松开始城市园艺之旅。',
     'about.visionTitle': '我们的愿景',
-    'about.vision': '到 2030 年成为马来西亚乃至亚洲领先的城市园艺企业。',
+    'about.vision': '到 2030 年在马来西亚建立 10 万个活跃城市花园，成为从吉隆坡到雅加达最受信赖的城市园艺品牌。',
     'about.teamTitle': '管理团队',
 
     // form fields
@@ -384,6 +386,8 @@ export const ui = {
     'cfg.kitNote': '预算内最接近的套装。',
     'cfg.noPlants': '没有完美匹配 —— 试着放宽日照或目标后再生成一次。',
     'cfg.bookCta': '预约咨询',
+    'cfg.inspiration': '你的花园大概长这样',
+    'cfg.inspirationNote': '根据你的选择匹配的真实参考照片。',
   },
 } as const;
 
