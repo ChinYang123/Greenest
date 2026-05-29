@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenNest - AI-Powered Urban Gardening</title>
+    <meta name="description" content="Build your urban garden with AI. Transform balconies, rooftops, and community spaces into sustainable green environments with GreenNest.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i data-lucide="leaf"></i>
+                <span>GreenNest</span>
+            </a>
+            <div class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#problem">Why Us</a>
+                <a href="#ai-planner">AI Planner</a>
+                <a href="#products">Products</a>
+                <a href="#benefits">Benefits</a>
+                <a href="#testimonials">Testimonials</a>
+            </div>
+            <a href="#contact" class="btn btn-outline">Contact Us</a>
+            <button class="mobile-menu-btn"><i data-lucide="menu"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="badge">🌿 Sustainable Living</div>
+                <h1>Build Your Urban Garden with <span class="highlight">AI</span></h1>
+                <p>Transform balconies, rooftops, and community spaces into sustainable green environments with our smart AI-powered recommendations.</p>
+                <div class="hero-buttons">
+                    <a href="#ai-planner" class="btn btn-primary">Try AI Garden Planner</a>
+                    <a href="#products" class="btn btn-secondary">Explore Packages</a>
+                </div>
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-value">10k+</span>
+                        <span class="stat-label">Happy Gardeners</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">50+</span>
+                        <span class="stat-label">Plant Varieties</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-card-wrapper">
+                <div class="ai-card glow-effect">
+                    <div class="card-header">
+                        <i data-lucide="bot"></i>
+                        <h3>AI Garden Assistant</h3>
+                    </div>
+                    <form class="ai-form">
+                        <div class="form-group">
+                            <label>Space Type</label>
+                            <select>
+                                <option>Balcony</option>
+                                <option>Rooftop</option>
+                                <option>Indoor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Goal</label>
+                            <div class="radio-group">
+                                <label class="radio-btn"><input type="radio" name="goal" checked> Vegetables</label>
+                                <label class="radio-btn"><input type="radio" name="goal"> Flowers</label>
+                                <label class="radio-btn"><input type="radio" name="goal"> Decorative</label>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary full-width">
+                            <i data-lucide="sparkles"></i> Generate Recommendation
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem-section">
+        <div class="container text-center">
+            <h2 class="section-title">Living in the city with limited space?</h2>
+            <p class="section-subtitle">We understand the challenges of urban gardening and have the perfect solutions.</p>
+            
+            <div class="grid grid-3">
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <i data-lucide="layout-grid"></i>
+                    </div>
+                    <h3>Small apartment gardening</h3>
+                    <p>Maximize your tiny spaces with smart vertical designs and compact growing systems.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <i data-lucide="sprout"></i>
+                    </div>
+                    <h3>No experience needed</h3>
+                    <p>Our AI guides you step-by-step, taking the guesswork out of plant care.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon-wrapper">
+                        <i data-lucide="droplet"></i>
+                    </div>
+                    <h3>Easy maintenance support</h3>
+                    <p>Automated reminders and smart sensors keep your plants thriving effortlessly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Recommendation Section -->
+    <section id="ai-planner" class="ai-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">AI Recommendation System</h2>
+                <p class="section-subtitle">Let our intelligent system design the perfect garden for your unique space.</p>
+            </div>
+            
+            <div class="ai-demo-container">
+                <div class="ai-input-panel">
+                    <div class="panel-header">
+                        <h3>Your Details</h3>
+                    </div>
+                    <div class="input-details">
+                        <div class="detail-item">
+                            <span class="label">Space:</span>
+                            <span class="value">Balcony</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Size:</span>
+                            <span class="value">Small (2x3m)</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Goal:</span>
+                            <span class="value">Vegetables</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">Sunlight:</span>
+                            <span class="value">Partial Shade</span>
+                        </div>
+                    </div>
+                    <div class="scanning-animation">
+                        <div class="scanner"></div>
+                        <p>AI is analyzing your space...</p>
+                    </div>
+                </div>
+                
+                <div class="ai-result-card">
+                    <div class="match-badge">98% Match</div>
+                    <div class="product-image-placeholder">
+                        <i data-lucide="leaf" class="large-icon"></i>
+                    </div>
+                    <div class="result-content">
+                        <h3>Starter Vertical Kit</h3>
+                        <div class="price">RM299</div>
+                        <ul class="features-list">
+                            <li><i data-lucide="check-circle-2"></i> Organic soil mix included</li>
+                            <li><i data-lucide="check-circle-2"></i> Space-saving vertical planter</li>
+                            <li><i data-lucide="check-circle-2"></i> Automated watering support</li>
+                            <li><i data-lucide="check-circle-2"></i> Curated vegetable seeds</li>
+                        </ul>
+                        <div class="card-actions">
+                            <button class="btn btn-outline">Customize</button>
+                            <button class="btn btn-primary">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+        <div class="container">
+            <h2 class="section-title text-center">Our Solutions</h2>
+            <div class="grid grid-3">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="img-placeholder">Starter</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Starter Kit</h3>
+                        <p>Perfect for beginners testing the waters.</p>
+                        <div class="price">RM299</div>
+                        <button class="btn btn-outline full-width">View Details</button>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="product-img">
+                        <div class="img-placeholder">Smart</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Smart Garden Kit</h3>
+                        <p>Advanced sensors and automated care for effortless growing.</p>
+                        <div class="price">RM599</div>
+                        <button class="btn btn-primary full-width">View Details</button>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <div class="img-placeholder">Commercial</div>
+                    </div>
+                    <div class="product-info">
+                        <h3>Commercial Rooftop</h3>
+                        <p>Large scale solutions for cafes and community spaces.</p>
+                        <div class="price">Custom</div>
+                        <button class="btn btn-outline full-width">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="benefits-section">
+        <div class="container">
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="b-icon"><i data-lucide="globe"></i></div>
+                    <h4>Eco Friendly</h4>
+                    <p>Sustainable materials and organic resources for a greener planet.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="b-icon"><i data-lucide="cpu"></i></div>
+                    <h4>AI Recommendation</h4>
+                    <p>Data-driven suggestions tailored specifically to your environment.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="b-icon"><i data-lucide="pen-tool"></i></div>
+                    <h4>Custom Design</h4>
+                    <p>Flexible setups that fit perfectly into your aesthetic and space constraints.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="b-icon"><i data-lucide="users"></i></div>
+                    <h4>Community Support</h4>
+                    <p>Join a network of urban gardeners sharing tips, seeds, and harvests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title text-center">What Our Community Says</h2>
+            <div class="grid grid-3">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i>
+                    </div>
+                    <p class="quote">"I never thought I could grow my own tomatoes in a 5th-floor apartment. The AI planner made it foolproof!"</p>
+                    <div class="author">
+                        <div class="avatar">S</div>
+                        <div class="author-info">
+                            <h5>Sarah Lee</h5>
+                            <span>Apartment Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i>
+                    </div>
+                    <p class="quote">"GreenNest transformed our barren rooftop into a lush herb garden for our kitchen. Our customers love it."</p>
+                    <div class="author">
+                        <div class="avatar">M</div>
+                        <div class="author-info">
+                            <h5>Marcus Chen</h5>
+                            <span>Cafe Rooftop Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i><i data-lucide="star" class="filled"></i>
+                    </div>
+                    <p class="quote">"The community support and easy maintenance kits helped us launch our neighborhood garden successfully."</p>
+                    <div class="author">
+                        <div class="avatar">E</div>
+                        <div class="author-info">
+                            <h5>Elena Rodriguez</h5>
+                            <span>Community Organizer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <h2>Start Your Green Journey Today</h2>
+            <p>Join thousands of urban dwellers who are bringing nature back to the city.</p>
+            <button class="btn btn-primary btn-large">Launch AI Planner</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="#" class="logo">
+                        <i data-lucide="leaf"></i>
+                        <span>GreenNest</span>
+                    </a>
+                    <p>Bringing nature to urban spaces through smart technology and sustainable design.</p>
+                    <div class="social-links">
+                        <a href="#"><i data-lucide="instagram"></i></a>
+                        <a href="#"><i data-lucide="twitter"></i></a>
+                        <a href="#"><i data-lucide="facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <a href="#hero">Home</a>
+                    <a href="#ai-planner">AI Planner</a>
+                    <a href="#products">Products</a>
+                    <a href="#problem">About Us</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Shipping Info</a>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact</h4>
+                    <p><i data-lucide="mail"></i> hello@greennest.com</p>
+                    <p><i data-lucide="phone"></i> +60 12-345 6789</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GreenNest. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
