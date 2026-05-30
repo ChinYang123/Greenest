@@ -252,7 +252,9 @@ function readConfig(root: HTMLElement): Config {
 function applyConfig(root: HTMLElement, cfg: Config) {
   (['space', 'size', 'sunlight', 'goal'] as const).forEach((group) => {
     root.querySelectorAll<HTMLElement>(`[data-group="${group}"] .option`).forEach((opt) => {
-      opt.classList.toggle('selected', opt.dataset.value === cfg[group]);
+      const on = opt.dataset.value === cfg[group];
+      opt.classList.toggle('selected', on);
+      opt.setAttribute('aria-pressed', String(on));
     });
   });
   const slider = root.querySelector<HTMLInputElement>('[data-budget]');
@@ -266,7 +268,10 @@ function isComplete(cfg: Config): boolean {
 }
 
 function resetAll(root: HTMLElement) {
-  root.querySelectorAll<HTMLElement>('.option.selected').forEach((o) => o.classList.remove('selected'));
+  root.querySelectorAll<HTMLElement>('.option.selected').forEach((o) => {
+    o.classList.remove('selected');
+    o.setAttribute('aria-pressed', 'false');
+  });
   const slider = root.querySelector<HTMLInputElement>('[data-budget]');
   const out = root.querySelector<HTMLElement>('[data-budget-value]');
   if (slider) slider.value = '100';
@@ -310,12 +315,25 @@ export function initDesigner() {
   const root = document.getElementById('garden-designer');
   if (!root) return;
 
-  // option selection (single-select per group)
+  // option selection (single-select per group), keyboard + pointer accessible
+  const selectOption = (opt: HTMLElement) => {
+    const group = opt.closest<HTMLElement>('[data-group]');
+    group?.querySelectorAll<HTMLElement>('.option').forEach((o) => {
+      o.classList.remove('selected');
+      o.setAttribute('aria-pressed', 'false');
+    });
+    opt.classList.add('selected');
+    opt.setAttribute('aria-pressed', 'true');
+    // Choosing again clears a previously shown validation error.
+    root.querySelector<HTMLElement>('[data-validation]')?.classList.add('hidden');
+  };
   root.querySelectorAll<HTMLElement>('.option').forEach((opt) => {
-    opt.addEventListener('click', () => {
-      const group = opt.closest<HTMLElement>('[data-group]');
-      group?.querySelectorAll('.option').forEach((o) => o.classList.remove('selected'));
-      opt.classList.add('selected');
+    opt.addEventListener('click', () => selectOption(opt));
+    opt.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        selectOption(opt);
+      }
     });
   });
 

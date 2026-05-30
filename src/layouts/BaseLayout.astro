@@ -42,8 +42,10 @@ const pageDesc = description ?? t('home.heroDesc');
     </script>
   </head>
   <body>
+    <a href="#main-content" class="skip-link">{t('a11y.skipToContent')}</a>
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
     <Navbar />
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
     <Footer />

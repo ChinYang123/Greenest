@@ -31,6 +31,7 @@ export const ui = {
     'nav.contact': 'Contact',
     'nav.menu': 'Menu',
     'nav.close': 'Close',
+    'a11y.skipToContent': 'Skip to content',
 
     // common buttons
     'btn.explore': 'Explore Packages',
@@ -252,6 +253,7 @@ export const ui = {
     'nav.contact': '联系我们',
     'nav.menu': '菜单',
     'nav.close': '关闭',
+    'a11y.skipToContent': '跳到主要内容',
 
     // common buttons
     'btn.explore': '浏览套装',

@@ -7,29 +7,18 @@ export const getStaticPaths = langStaticPaths;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const items = lang === 'zh'
-  ? [
-      { emoji: '🪴', label: '阳台垂直花园概念', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
-      { emoji: '🍅', label: '阳台菜园概念', c: 'linear-gradient(135deg,#388E3C,#1B5E20)' },
-      { emoji: '☕', label: '咖啡馆屋顶香草园概念', c: 'linear-gradient(135deg,#1B5E20,#2E7D32)' },
-      { emoji: '🌸', label: '社区花圃概念', c: 'linear-gradient(135deg,#43A047,#2E7D32)' },
-      { emoji: '🌿', label: '室内香草角概念', c: 'linear-gradient(135deg,#2E7D32,#388E3C)' },
-      { emoji: '🌻', label: '屋顶花卉区概念', c: 'linear-gradient(135deg,#33691E,#1B5E20)' },
-      { emoji: '🥬', label: '小空间叶菜种植概念', c: 'linear-gradient(135deg,#1B5E20,#33691E)' },
-      { emoji: '🫚', label: '办公室绿化墙概念', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
-      { emoji: '🌺', label: '热带花墙概念', c: 'linear-gradient(135deg,#388E3C,#2E7D32)' },
-    ]
-  : [
-      { emoji: '🪴', label: 'Balcony vertical garden concept', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
-      { emoji: '🍅', label: 'Balcony veggie patch concept', c: 'linear-gradient(135deg,#388E3C,#1B5E20)' },
-      { emoji: '☕', label: 'Café rooftop herb garden concept', c: 'linear-gradient(135deg,#1B5E20,#2E7D32)' },
-      { emoji: '🌸', label: 'Community flower bed concept', c: 'linear-gradient(135deg,#43A047,#2E7D32)' },
-      { emoji: '🌿', label: 'Indoor herb corner concept', c: 'linear-gradient(135deg,#2E7D32,#388E3C)' },
-      { emoji: '🌻', label: 'Rooftop flower zone concept', c: 'linear-gradient(135deg,#33691E,#1B5E20)' },
-      { emoji: '🥬', label: 'Small-space leafy greens concept', c: 'linear-gradient(135deg,#1B5E20,#33691E)' },
-      { emoji: '🫚', label: 'Office green wall concept', c: 'linear-gradient(135deg,#2E7D32,#1B5E20)' },
-      { emoji: '🌺', label: 'Tropical flowering wall concept', c: 'linear-gradient(135deg,#388E3C,#2E7D32)' },
-    ];
+// On-palette gradients (forest / sage / clay) so the gallery sits in the
+// same botanical-editorial world as the rest of the site.
+const FOREST = 'linear-gradient(150deg,#2F6B45,#143D26)';
+const PINE = 'linear-gradient(150deg,#21603C,#0F3320)';
+const SAGE = 'linear-gradient(150deg,#3E8E5A,#21603C)';
+const CLAY = 'linear-gradient(150deg,#C2674A,#8A3F2B)';
+const labels = lang === 'zh'
+  ? ['阳台垂直花园概念', '阳台菜园概念', '咖啡馆屋顶香草园概念', '社区花圃概念', '室内香草角概念', '屋顶花卉区概念', '小空间叶菜种植概念', '办公室绿化墙概念', '热带花墙概念']
+  : ['Balcony vertical garden concept', 'Balcony veggie patch concept', 'Café rooftop herb garden concept', 'Community flower bed concept', 'Indoor herb corner concept', 'Rooftop flower zone concept', 'Small-space leafy greens concept', 'Office green wall concept', 'Tropical flowering wall concept'];
+const emojis = ['🪴', '🍅', '☕', '🌸', '🌿', '🌻', '🥬', '🫚', '🌺'];
+const gradients = [FOREST, SAGE, PINE, CLAY, SAGE, FOREST, PINE, FOREST, CLAY];
+const items = emojis.map((emoji, i) => ({ emoji, label: labels[i], c: gradients[i] }));
 ---
 <BaseLayout title={t('gallery.title')} description={t('gallery.subtitle')}>
   <PageHeader title={t('gallery.title')} subtitle={t('gallery.subtitle')} />
@@ -38,7 +27,7 @@ const items = lang === 'zh'
       <div class="gallery-grid">
         {items.map((it) => (
           <div class="gallery-item" style={`background:${it.c}`}>
-            {it.emoji}
+            <span class="plate-motif" aria-hidden="true">{it.emoji}</span>
             <span class="label">{it.label}</span>
           </div>
         ))}

@@ -38,8 +38,8 @@ const groups = [
         <legend>{g.legend}</legend>
         <div class="option-grid">
           {g.opts.map((o) => (
-            <div class="option" data-value={o.v} role="button" tabindex="0">
-              <span class="opt-emoji">{o.emoji}</span>{o.label}
+            <div class="option" data-value={o.v} role="button" tabindex="0" aria-pressed="false">
+              <span class="opt-emoji" aria-hidden="true">{o.emoji}</span>{o.label}
             </div>
           ))}
         </div>

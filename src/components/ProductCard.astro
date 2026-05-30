@@ -12,7 +12,7 @@ const emojiByFit = product.fits.includes('rooftop') && product.priceRM === 0 ? '
 ---
 <div class={`product-card${product.featured ? ' featured' : ''}`}>
   {product.featured && <div class="popular-badge">{t('products.popular')}</div>}
-  <div class="product-img">{emojiByFit}</div>
+  <div class="product-img"><span class="plate-motif" aria-hidden="true">{emojiByFit}</span></div>
   <div class="product-info">
     <h3>{product.name[lang]}</h3>
     <p>{product.tagline[lang]}</p>
