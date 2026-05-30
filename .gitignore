@@ -13,3 +13,5 @@ npm-debug.log*
 .DS_Store
 # OMC session/orchestration state
 .omc/
+.oh-my-opencode-pi-*.json
+.unipi/ralph/*.state.json

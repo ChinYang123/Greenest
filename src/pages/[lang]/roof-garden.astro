@@ -1,20 +1,113 @@
 ---
-// Roof Garden Service has been merged into the Garden Designer page.
-// Keep this URL working (older links / blog posts point here) by redirecting.
-import { langStaticPaths, getLangFromUrl } from '../../i18n/utils';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MockForm from '../../components/MockForm.astro';
+import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
+
 export const getStaticPaths = langStaticPaths;
 const lang = getLangFromUrl(Astro.url);
-const target = `/${lang}/design-your-garden`;
+const t = useTranslations(lang);
+
+const evidence = lang === 'zh'
+  ? [
+      { value: '74%', label: '对屋顶与阳台绿化服务感兴趣' },
+      { value: '50%', label: '认为缺少空间是主要园艺障碍' },
+      { value: '88%', label: '重视环保与可持续材料' },
+    ]
+  : [
+      { value: '74%', label: 'Interested in rooftop and balcony greening services' },
+      { value: '50%', label: 'Identify lack of space as a major gardening barrier' },
+      { value: '88%', label: 'Value eco-friendly and sustainable materials' },
+    ];
+
+const steps = [
+  { n: 1, title: t('roof.step1'), desc: t('roof.step1Desc') },
+  { n: 2, title: t('roof.step2'), desc: t('roof.step2Desc') },
+  { n: 3, title: t('roof.step3'), desc: t('roof.step3Desc') },
+];
+
+const serviceTypes = lang === 'zh'
+  ? [
+      { icon: 'home', title: '公寓阳台绿化', desc: '为高层住宅和学生宿舍提供紧凑、低维护的垂直种植方案。' },
+      { icon: 'building-2', title: '住宅屋顶绿化', desc: '为共管公寓和住宅楼宇规划屋顶菜园、观赏植物和休闲绿地。' },
+      { icon: 'store', title: '商业空间绿化', desc: '为咖啡馆、办公楼和社区空间提供定制种植布局与维护建议。' },
+    ]
+  : [
+      { icon: 'home', title: 'Apartment balcony greening', desc: 'Compact, low-maintenance vertical setups for high-rise homes and student accommodation.' },
+      { icon: 'building-2', title: 'Residential rooftop greening', desc: 'Rooftop edible gardens, decorative planting, and shared green areas for condos and residential buildings.' },
+      { icon: 'store', title: 'Commercial space greening', desc: 'Custom planting layouts and maintenance guidance for cafés, offices, and shared urban spaces.' },
+    ];
+
+const fields = [
+  { name: 'name', label: t('form.name'), type: 'text' as const, required: true },
+  { name: 'email', label: t('form.email'), type: 'email' as const, required: true },
+  { name: 'phone', label: t('form.phone'), type: 'tel' as const, required: false },
+  { name: 'spaceType', label: t('form.spaceType'), type: 'select' as const, required: true, options: [t('cfg.space.rooftop'), t('cfg.space.balcony'), t('cfg.space.indoor')] },
+  { name: 'message', label: t('form.message'), type: 'textarea' as const, required: false },
+];
 ---
-<!doctype html>
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content={`0; url=${target}`} />
-    <link rel="canonical" href={target} />
-    <title>Redirecting…</title>
-  </head>
-  <body>
-    <p>Redirecting to <a href={target}>Garden Designer</a>…</p>
-  </body>
-</html>
+<BaseLayout title={t('roof.title')} description={t('roof.subtitle')}>
+  <PageHeader title={t('roof.title')} subtitle={t('roof.subtitle')} />
+
+  <section>
+    <div class="container">
+      <SectionHeader
+        title={lang === 'zh' ? '为什么这项服务符合市场调研' : 'Why this service matches the market research'}
+        subtitle={lang === 'zh'
+          ? 'Entrepreneurship.docx 显示，屋顶与阳台绿化是 CityGarden 未来服务扩展的重要机会。'
+          : 'Entrepreneurship.docx identifies rooftop and balcony greening as a strong future service opportunity for CityGarden.'}
+      />
+      <div class="grid grid-3">
+        {evidence.map((item) => (
+          <div class="feature-card">
+            <div class="stat-value" style="color:var(--primary);">{item.value}</div>
+            <h3>{item.label}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--surface">
+    <div class="container">
+      <SectionHeader
+        title={lang === 'zh' ? '服务类型' : 'Service Types'}
+        subtitle={lang === 'zh'
+          ? '从阳台到屋顶，CityGarden 将有限空间转化为可持续、易维护的绿色环境。'
+          : 'From balconies to rooftops, CityGarden turns limited spaces into sustainable, manageable green environments.'}
+      />
+      <div class="grid grid-3">
+        {serviceTypes.map((s) => (
+          <div class="feature-card">
+            <div class="icon-wrapper"><i data-lucide={s.icon}></i></div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <SectionHeader title={lang === 'zh' ? '服务流程' : 'Service Process'} subtitle={t('roof.subtitle')} />
+      <div class="steps-grid">
+        {steps.map((s) => (
+          <div class="step-card">
+            <div class="step-num">{s.n}</div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--surface">
+    <div class="container">
+      <SectionHeader title={t('roof.formTitle')} />
+      <MockForm fields={fields} submitLabel={t('btn.submit')} />
+    </div>
+  </section>
+</BaseLayout>

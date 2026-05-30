@@ -47,7 +47,7 @@ Orchids deserve special mention: they are low water need but require very specif
 
 Malaysia receives rain year-round. On any day your balcony gets rain, skip your scheduled watering entirely. A heavy tropical downpour can waterlog a small container in under 30 minutes.
 
-If you have a rooftop garden or large balcony setup, a simple rain sensor (included in GreenNest's commercial installations) automatically pauses irrigation on rain days. This can save thousands of litres of water annually and prevents the root rot that follows unnecessary post-rain watering.
+If you have a rooftop garden or large balcony setup, a simple rain sensor can automatically pause irrigation on rain days. This reduces unnecessary watering and helps prevent the root rot that follows repeated post-rain watering.
 
 ## Signs your watering is off
 
@@ -65,8 +65,8 @@ If you have a rooftop garden or large balcony setup, a simple rain sensor (inclu
 
 ## How self-watering systems help
 
-GreenNest's Smart Garden Kit includes a 2 L reservoir with a wicking system that delivers moisture to the root zone on demand. The plant draws water up through capillary action only when its roots need it — which naturally prevents both overwatering and underwatering.
+CityGarden's proposed Self-Watering Upgrade Kit includes a 2 L reservoir with a wicking system that delivers moisture to the root zone on demand. The plant draws water up through capillary action only when its roots need it — which naturally prevents both overwatering and underwatering.
 
-Paired with the soil moisture sensor and GreenNest app, you can see your container's moisture level in real time and receive alerts if it drops too low. For busy city dwellers who travel, this removes the anxiety of leaving plants unattended.
+Paired with a simple moisture indicator and the CityGarden care checklist, users can check whether containers need watering before plants are stressed. For busy city dwellers who travel, this reduces the anxiety of leaving plants unattended.
 
 The simple rule: when in doubt, wait a day. In Malaysia's humidity, plants are far more likely to survive a missed watering than an extra one.

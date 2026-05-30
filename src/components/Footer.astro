@@ -9,7 +9,7 @@ const year = 2026;
     <div class="footer-content">
       <div class="footer-brand">
         <a href={getLocalizedPath('/', lang)} class="logo">
-          <i data-lucide="leaf"></i><span>GreenNest</span>
+          <i data-lucide="leaf"></i><span>{t('brand.name')}</span>
         </a>
         <p>{t('home.heroDesc')}</p>
         <p class="parent">{t('brand.parent')}</p>
@@ -19,6 +19,7 @@ const year = 2026;
         <h4>{t('nav.home')}</h4>
         <a href={getLocalizedPath('/products', lang)}>{t('nav.products')}</a>
         <a href={getLocalizedPath('/design-your-garden', lang)}>{t('nav.design')}</a>
+        <a href={getLocalizedPath('/roof-garden', lang)}>{t('nav.roof')}</a>
         <a href={getLocalizedPath('/community', lang)}>{t('nav.community')}</a>
         <a href={getLocalizedPath('/gallery', lang)}>{t('nav.gallery')}</a>
         <a href={getLocalizedPath('/blog', lang)}>{t('nav.blog')}</a>
@@ -37,7 +38,7 @@ const year = 2026;
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; {year} GreenNest · CityGarden Sdn Bhd. {t('common.allRights')}</p>
+      <p>&copy; {year} CityGarden. {t('common.allRights')}</p>
     </div>
   </div>
 </footer>

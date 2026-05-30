@@ -8,13 +8,36 @@ import { products } from '../../data/products';
 export const getStaticPaths = langStaticPaths;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const kitProducts = products.filter((p) => p.priceRM > 0);
+const serviceProducts = products.filter((p) => p.priceRM === 0);
 ---
 <BaseLayout title={t('products.title')} description={t('products.subtitle')}>
   <PageHeader title={t('products.title')} subtitle={t('products.subtitle')} />
   <section>
     <div class="container">
+      <div class="feature-card" style="max-width:900px;margin:0 auto 3rem;text-align:left;">
+        <div class="badge" style="margin-bottom:1rem;">{lang === 'zh' ? '调研对应' : 'Research fit'}</div>
+        <h2 style="margin-bottom:1rem;">{lang === 'zh' ? '先展示 RM50–RM100 入门方案，再展示进阶与服务方案' : 'Starter-first hierarchy, then upgrades and services'}</h2>
+        <p>{lang === 'zh'
+          ? '问卷显示多数受访者愿意为智能环保垂直园艺入门套装支付 RM50–RM100。因此本页先展示可负担入门套装，再展示自动浇水升级和定制屋顶/阳台服务。'
+          : 'The survey found that most respondents prefer RM50–RM100 for a smart eco-friendly starter kit. This page therefore leads with affordable kits before presenting self-watering upgrades and custom rooftop/balcony services.'}</p>
+      </div>
+
+      <h2 class="section-title text-center">{lang === 'zh' ? '可负担城市园艺套装' : 'Affordable Urban Gardening Kits'}</h2>
       <div class="grid grid-3">
-        {products.map((p) => <ProductCard product={p} />)}
+        {kitProducts.map((p) => <ProductCard product={p} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--surface">
+    <div class="container">
+      <h2 class="section-title text-center">{lang === 'zh' ? '定制绿化服务' : 'Custom Greening Services'}</h2>
+      <p class="section-subtitle">{lang === 'zh'
+        ? '面向屋顶、阳台、商业空间和社区共享空间的咨询、设计、安装与维护服务。'
+        : 'Consultation, design, installation planning, and maintenance support for rooftops, balconies, commercial spaces, and shared community areas.'}</p>
+      <div class="grid grid-3" style="max-width:760px;margin:0 auto;">
+        {serviceProducts.map((p) => <ProductCard product={p} />)}
       </div>
     </div>
   </section>

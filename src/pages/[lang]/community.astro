@@ -23,12 +23,54 @@ const steps = [
   { icon: 'hammer', title: t('community.step2Title'), desc: t('community.step2Desc') },
   { icon: 'graduation-cap', title: t('community.step3Title'), desc: t('community.step3Desc') },
 ];
+
+const evidence = lang === 'zh'
+  ? [
+      { value: '66%', label: '对社区园艺项目感兴趣' },
+      { value: '82%', label: '认同家庭绿地改善心理健康和生活质量' },
+      { value: '88%', label: '重视环保和可持续材料' },
+    ]
+  : [
+      { value: '66%', label: 'Interested in community gardening projects' },
+      { value: '82%', label: 'Agree home greenery improves mental well-being and quality of life' },
+      { value: '88%', label: 'Consider eco-friendly materials important' },
+    ];
+
+const outcomes = lang === 'zh'
+  ? [
+      { icon: 'users', title: '建立邻里参与', desc: '把城市居民对社区活动的兴趣转化为共享种植计划。' },
+      { icon: 'sprout', title: '共享可食用与观赏植物', desc: '支持受访者对食用和装饰植物的混合偏好。' },
+      { icon: 'book-open', title: '工作坊与维护支持', desc: '通过培训降低新手的知识缺口和维护压力。' },
+    ]
+  : [
+      { icon: 'users', title: 'Build resident participation', desc: 'Turns interest in community activity into a shared planting program.' },
+      { icon: 'sprout', title: 'Shared edible and decorative planting', desc: 'Supports the mixed edible/decorative plant preferences found in the survey.' },
+      { icon: 'book-open', title: 'Workshops and maintenance support', desc: 'Training reduces beginner knowledge gaps and ongoing maintenance stress.' },
+    ];
 ---
 <BaseLayout title={t('community.title')} description={t('community.subtitle')}>
   <PageHeader title={t('community.heroTitle')} subtitle={t('community.heroDesc')} />
 
-  <!-- Steps / How it works -->
   <section>
+    <div class="container">
+      <SectionHeader
+        title={lang === 'zh' ? '为什么社区花园符合调研结果' : 'Why community gardens fit the research'}
+        subtitle={lang === 'zh'
+          ? 'Entrepreneurship.docx 显示，社区参与、心理健康与可持续生活是 CityGarden 的重要定位。'
+          : 'Entrepreneurship.docx shows that community participation, well-being, and sustainable living are important parts of CityGarden’s positioning.'}
+      />
+      <div class="grid grid-3">
+        {evidence.map((item) => (
+          <div class="feature-card">
+            <div class="stat-value" style="color:var(--primary);">{item.value}</div>
+            <h3>{item.label}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--surface">
     <div class="container">
       <SectionHeader title={t('community.title')} subtitle={t('community.subtitle')} />
       <div class="grid grid-3">
@@ -43,40 +85,27 @@ const steps = [
     </div>
   </section>
 
-  <!-- Success Story Case Study -->
-  <section class="section--surface">
+  <section>
     <div class="container">
-      <div class="grid grid-2 align-items-center" style="gap:4rem;">
-        <div class="case-study-visual" style="background: linear-gradient(135deg, #1B5E20, #4C9F70); color: white; border-radius: 16px; padding: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: var(--shadow-md);">
-          <i data-lucide="sprout" style="width: 64px; height: 64px; margin-bottom: 1.5rem;"></i>
-          <span style="font-family: var(--font-serif); font-size: 2rem; font-weight: 600; line-height: 1.2;">PPR Ampang</span>
-          <span style="margin-top: 0.5rem; opacity: 0.8; font-weight: 500; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Community Harvest Garden</span>
-        </div>
-        <div class="case-study-content">
-          <div class="badge" style="margin-bottom:1rem;">🌿 {t('home.testimonialsTitle')}</div>
-          <h2 style="font-family:var(--font-serif);font-size:2.25rem;margin-bottom:1.5rem;color:var(--text-main);">{t('community.caseTitle')}</h2>
-          <p style="font-size:1.1rem;line-height:1.7;color:var(--text-muted);margin-bottom:2rem;">{t('community.caseDesc')}</p>
-          <div class="stats-row" style="display:flex;gap:3rem;">
-            <div>
-              <div style="font-size:2.5rem;font-weight:700;color:var(--color-primary);line-height:1.1;">40+</div>
-              <div style="font-size:0.875rem;color:var(--text-muted);margin-top:0.25rem;">Active Families</div>
-            </div>
-            <div>
-              <div style="font-size:2.5rem;font-weight:700;color:var(--color-primary);line-height:1.1;">250 m²</div>
-              <div style="font-size:0.875rem;color:var(--text-muted);margin-top:0.25rem;">Transformed Plot</div>
-            </div>
-            <div>
-              <div style="font-size:2.5rem;font-weight:700;color:var(--color-primary);line-height:1.1;">RM1.5k</div>
-              <div style="font-size:0.875rem;color:var(--text-muted);margin-top:0.25rem;">Monthly Produce Savings</div>
-            </div>
+      <SectionHeader
+        title={lang === 'zh' ? '项目带来的价值' : 'Program Value'}
+        subtitle={lang === 'zh'
+          ? '这个页面展示 CityGarden 如何把报告中的社区园艺机会转化为可执行服务。'
+          : 'This page shows how CityGarden turns the report’s community-gardening opportunity into an actionable service.'}
+      />
+      <div class="grid grid-3">
+        {outcomes.map((o) => (
+          <div class="feature-card">
+            <div class="icon-wrapper"><i data-lucide={o.icon}></i></div>
+            <h3>{o.title}</h3>
+            <p>{o.desc}</p>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Sign up form -->
-  <section>
+  <section class="section--surface">
     <div class="container" style="max-width: 680px;">
       <MockForm title={t('community.formTitle')} fields={fields} submitLabel={t('btn.register')} />
     </div>

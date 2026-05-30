@@ -12,11 +12,39 @@ const all = await getCollection('blog', (e) => e.id.startsWith(`${lang}/`));
 const posts = all.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const fmt = (d: Date) => d.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-GB', { year: 'numeric', month: 'short', day: 'numeric' });
 const slugOf = (id: string) => id.replace(`${lang}/`, '').replace(/\.md$/, '');
+const supportModules = lang === 'zh'
+  ? [
+      { icon: 'book-open', title: '新手种植指南', desc: '用分步教程降低 34% “缺少园艺知识” 的阻碍。' },
+      { icon: 'droplet', title: '低维护养护技巧', desc: '用浇水、排水和自浇水建议回应 52% “缺少维护时间” 的问题。' },
+      { icon: 'layout-grid', title: '小空间规划', desc: '用阳台、室内和垂直种植指南回应 50% “空间不足” 的问题。' },
+    ]
+  : [
+      { icon: 'book-open', title: 'Beginner growing guides', desc: 'Step-by-step tutorials reduce the 34% knowledge gap identified in the survey.' },
+      { icon: 'droplet', title: 'Low-maintenance care tips', desc: 'Watering, drainage, and self-watering guidance responds to the 52% time barrier.' },
+      { icon: 'layout-grid', title: 'Small-space planning', desc: 'Balcony, indoor, and vertical gardening guides respond to the 50% space barrier.' },
+    ];
 ---
 <BaseLayout title={t('blog.title')} description={t('blog.subtitle')}>
   <PageHeader title={t('blog.title')} subtitle={t('blog.subtitle')} />
   <section>
     <div class="container">
+      <div class="feature-card" style="max-width:900px;margin:0 auto 3rem;text-align:left;">
+        <div class="badge" style="margin-bottom:1rem;">{lang === 'zh' ? '教育与支持' : 'Education & support'}</div>
+        <h2 style="margin-bottom:1rem;">{lang === 'zh' ? '博客是 CityGarden 的客户支持资源中心' : 'The blog is CityGarden’s customer support resource hub'}</h2>
+        <p>{lang === 'zh'
+          ? 'Entrepreneurship.docx 建议网站整合教程、园艺资源和客户支持，以帮助初学者持续维护花园。本页面把内容分为博客和 DIY 指南，让评估者能清楚看到教育功能。'
+          : 'Entrepreneurship.docx recommends integrating tutorials, gardening resources, and customer support into the website. This page separates blog content from DIY guides so the education/support function is clear to evaluators.'}</p>
+      </div>
+
+      <div class="grid grid-3" style="margin-bottom:3rem;">
+        {supportModules.map((m) => (
+          <div class="feature-card">
+            <div class="icon-wrapper"><i data-lucide={m.icon}></i></div>
+            <h3>{m.title}</h3>
+            <p>{m.desc}</p>
+          </div>
+        ))}
+      </div>
       <div class="blog-filters">
         <button class="filter-btn active" data-filter="all">{t('blog.all')}</button>
         <button class="filter-btn" data-filter="blog">{t('blog.blog')}</button>

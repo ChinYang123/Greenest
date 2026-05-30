@@ -30,7 +30,7 @@ For café and office owners with flat rooftops in Bangsar, TTDI, or Damansara, a
 
 ## 4. It rebuilds community in vertical living environments
 
-One of the quiet losses of high-rise urban life is the erosion of neighbourhood bonds. When GreenNest's community team set up a shared garden plot in a PPR flat in Ampang, something unexpected happened: within two months, residents who had lived in the same block for years but never spoken began trading produce, sharing seeds, and gathering at the garden after work.
+One of the quiet losses of high-rise urban life is the erosion of neighbourhood bonds. CityGarden's community-garden concept is designed to create a shared reason for residents to trade produce, share seeds, and gather around a practical green space after work.
 
 A shared green space gives people a reason to slow down and talk. In a country where mental health challenges are rising — Malaysia's 2023 National Health and Morbidity Survey found that 1 in 3 adults experiences symptoms of anxiety or depression — that social fabric matters.
 
@@ -38,4 +38,4 @@ A shared green space gives people a reason to slow down and talk. In a country w
 
 You do not need a rooftop, a garden plot, or even a balcony. A sunny kitchen windowsill is enough for a pot of basil, mint, or kangkung. The point is not to achieve self-sufficiency — it is to reclaim a small, living corner of nature in a world that has paved over most of it.
 
-Use our [Garden Designer](/en/design-your-garden) to find the best plants for your specific space and light conditions. It takes three minutes and gives you a personalised planting plan.
+Use our [Garden Planner](/en/design-your-garden) to explore suitable plants for your specific space and light conditions. It gives a rule-based recommendation for the prototype.

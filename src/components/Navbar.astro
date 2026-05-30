@@ -10,6 +10,7 @@ const links = [
   { href: getLocalizedPath('/', lang), label: t('nav.home') },
   { href: getLocalizedPath('/products', lang), label: t('nav.products') },
   { href: getLocalizedPath('/design-your-garden', lang), label: t('nav.design') },
+  { href: getLocalizedPath('/roof-garden', lang), label: t('nav.roof') },
   { href: getLocalizedPath('/community', lang), label: t('nav.community') },
   { href: getLocalizedPath('/gallery', lang), label: t('nav.gallery') },
   { href: getLocalizedPath('/blog', lang), label: t('nav.blog') },
@@ -22,7 +23,7 @@ const isActive = (href: string) =>
   <div class="nav-container">
     <a href={getLocalizedPath('/', lang)} class="logo">
       <i data-lucide="leaf"></i>
-      <span>GreenNest</span>
+      <span>{t('brand.name')}</span>
     </a>
     <div class="nav-links">
       {links.map((l) => <a href={l.href} class={isActive(l.href) ? 'active' : ''}>{l.label}</a>)}
@@ -40,7 +41,7 @@ const isActive = (href: string) =>
 <div class="drawer-backdrop" id="drawerBackdrop"></div>
 <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
   <div class="drawer-head">
-    <span class="logo"><i data-lucide="leaf"></i> GreenNest</span>
+    <span class="logo"><i data-lucide="leaf"></i> {t('brand.name')}</span>
     <button class="drawer-close" id="drawerClose" aria-label={t('nav.close')}><i data-lucide="x"></i></button>
   </div>
   {links.map((l) => <a href={l.href}>{l.label}</a>)}

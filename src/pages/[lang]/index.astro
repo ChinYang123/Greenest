@@ -12,28 +12,49 @@ const t = useTranslations(lang);
 
 const problems = [
   { icon: 'layout-grid', title: t('home.problem1Title'), desc: t('home.problem1Desc') },
-  { icon: 'sprout', title: t('home.problem2Title'), desc: t('home.problem2Desc') },
-  { icon: 'droplet', title: t('home.problem3Title'), desc: t('home.problem3Desc') },
+  { icon: 'clock', title: t('home.problem2Title'), desc: t('home.problem2Desc') },
+  { icon: 'book-open', title: t('home.problem3Title'), desc: t('home.problem3Desc') },
 ];
 const benefits = [
-  { icon: 'globe', title: t('home.benefit1Title'), desc: t('home.benefit1Desc') },
+  { icon: 'layers', title: t('home.benefit1Title'), desc: t('home.benefit1Desc') },
   { icon: 'cpu', title: t('home.benefit2Title'), desc: t('home.benefit2Desc') },
-  { icon: 'pen-tool', title: t('home.benefit3Title'), desc: t('home.benefit3Desc') },
+  { icon: 'leaf', title: t('home.benefit3Title'), desc: t('home.benefit3Desc') },
   { icon: 'users', title: t('home.benefit4Title'), desc: t('home.benefit4Desc') },
 ];
-const testimonials = lang === 'zh'
-  ? [
-      { initial: 'NF', name: '诺菲祖尔·阿兹米', role: 'Mont Kiara 公寓业主', quote: '“我住 21 楼，一直以为养不了什么植物。Smart Garden Kit 的土壤传感器改变了一切——现在我每周能收获满满一碗沙拉，邻居都来问我是怎么做到的。”' },
-      { initial: 'CT', name: '陈家慧', role: 'The Social Cup 咖啡馆创始人，八打灵再也', quote: '“屋顶原本是烫得没法用的空间。GreenNest 做完结构评估并完成安装后，我们菜单上有 6 样自产食材，每月至少省下 RM 1,400 的食材成本。”' },
-      { initial: 'RS', name: '罗希尼·苏布拉马尼亚', role: '安邦 PPR 公寓居委会负责人', quote: '“Siti 和她的团队在两个周末把我们楼下空地变成了真正的社区菜园。现在超过 40 户家庭在这里种菜，孩子们终于知道蔬菜是怎么长出来的了。”' },
-    ]
-  : [
-      { initial: 'NF', name: 'Norfizul Azmi', role: 'Apartment Owner, Mont Kiara KL', quote: '“I live on the 21st floor and assumed gardening was impossible. The Smart Kit soil sensor changed everything — I harvest a full salad bowl every week and my neighbours keep asking how I do it.”' },
-      { initial: 'CT', name: 'Cheryl Tan', role: 'Founder, The Social Cup Café, PJ', quote: '“Our rooftop was just wasted heat. After GreenNest\'s structural check and full install, we have 6 menu ingredients grown upstairs and save at least RM 1,400 in produce costs every month.”' },
-      { initial: 'RS', name: 'Rohini Subramaniam', role: 'Residents Committee Chair, PPR Ampang', quote: '“Siti\'s team turned our unused ground-floor plot into a real community garden in two weekends. Over 40 households grow here now, and the kids finally know where vegetables come from.”' },
-    ];
 const designPath = getLocalizedPath('/design-your-garden', lang);
 const productsPath = getLocalizedPath('/products', lang);
+const communityPath = getLocalizedPath('/community', lang);
+const surveyEvidence = lang === 'zh'
+  ? [
+      { value: '72%', label: '对城市园艺感兴趣', note: '显示市场有明确需求。' },
+      { value: '80%', label: '愿意考虑垂直园艺系统', note: '支持节省空间的产品方向。' },
+      { value: '82%', label: '认为自动浇水会提高维护意愿', note: '证明低维护功能很关键。' },
+      { value: '88%', label: '重视环保和可持续材料', note: '支持 CityGarden 的可持续定位。' },
+      { value: '74%', label: '对屋顶或阳台绿化服务感兴趣', note: '支持服务型收入机会。' },
+      { value: '80%', label: '未来可能购买 CityGarden', note: '显示商业可行性。' },
+    ]
+  : [
+      { value: '72%', label: 'Interested in urban gardening', note: 'Shows clear market demand.' },
+      { value: '80%', label: 'Willing to use vertical systems', note: 'Supports the space-saving product direction.' },
+      { value: '82%', label: 'More willing with automatic watering', note: 'Validates low-maintenance features.' },
+      { value: '88%', label: 'Value eco-friendly materials', note: 'Supports CityGarden’s sustainability positioning.' },
+      { value: '74%', label: 'Interested in rooftop/balcony greening', note: 'Supports service revenue opportunities.' },
+      { value: '80%', label: 'Likely to purchase CityGarden', note: 'Indicates commercial feasibility.' },
+    ];
+const personaFacts = lang === 'zh'
+  ? [
+      '18–35 岁学生与年轻上班族',
+      '居住在公寓、共管公寓或学生宿舍',
+      '想要美观、可食用、低维护的绿化空间',
+      '偏好网站、电商平台与清晰的种植指导',
+    ]
+  : [
+      'Students and young working adults aged 18–35',
+      'Apartment, condominium, or student-hostel residents',
+      'Want attractive, edible, low-maintenance greenery',
+      'Prefer website/e-commerce access and clear growing guidance',
+    ];
+const productPreview = products.slice(0, 3);
 ---
 <BaseLayout>
   <header id="hero" class="hero-section">
@@ -80,11 +101,45 @@ const productsPath = getLocalizedPath('/products', lang);
     </div>
   </section>
 
+  <section>
+    <div class="container">
+      <SectionHeader
+        title={lang === 'zh' ? '市场调研证明需求存在' : 'Market Research Evidence'}
+        subtitle={lang === 'zh'
+          ? '以下数据来自 Entrepreneurship.docx 的 50 份问卷结果，直接支持 CityGarden 的产品与服务设计。'
+          : 'These findings from the 50-response survey in Entrepreneurship.docx directly support CityGarden’s product and service design.'}
+      />
+      <div class="grid grid-3">
+        {surveyEvidence.map((item) => (
+          <div class="feature-card">
+            <div class="stat-value" style="color:var(--primary);">{item.value}</div>
+            <h3>{item.label}</h3>
+            <p>{item.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--surface">
+    <div class="container">
+      <SectionHeader
+        title={lang === 'zh' ? '目标顾客：年轻城市居民' : 'Target Customer: Young Urban Residents'}
+        subtitle={lang === 'zh'
+          ? 'CityGarden 面向空间有限、时间有限、但重视健康和可持续生活的城市用户。'
+          : 'CityGarden focuses on people with limited space and time who still value wellness, sustainability, and practical greenery.'}
+      />
+      <div class="grid grid-2" style="max-width:900px;margin:0 auto;">
+        {personaFacts.map((fact) => <div class="feature-card"><h3>{fact}</h3></div>)}
+      </div>
+    </div>
+  </section>
+
   <section id="products">
     <div class="container">
       <SectionHeader title={t('home.productsTitle')} subtitle={t('products.subtitle')} />
       <div class="grid grid-3">
-        {products.map((p) => <ProductCard product={p} />)}
+        {productPreview.map((p) => <ProductCard product={p} />)}
       </div>
     </div>
   </section>
@@ -106,18 +161,28 @@ const productsPath = getLocalizedPath('/products', lang);
 
   <section class="section--surface">
     <div class="container">
-      <SectionHeader title={t('home.testimonialsTitle')} />
+      <SectionHeader
+        title={lang === 'zh' ? '从研究建议到网站功能' : 'From Research Recommendations to Website Features'}
+        subtitle={lang === 'zh'
+          ? '主页、产品、花园规划器、屋顶/阳台服务和社区项目共同回应报告中的核心建议。'
+          : 'The home page, kits, planner, rooftop/balcony service, and community program each map to recommendations in the report.'}
+      />
       <div class="grid grid-3">
-        {testimonials.map((tm) => (
-          <div class="testimonial-card">
-            <div class="stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-            <p class="quote">{tm.quote}</p>
-            <div class="author">
-              <div class="avatar">{tm.initial}</div>
-              <div class="author-info"><h5>{tm.name}</h5><span>{tm.role}</span></div>
-            </div>
-          </div>
-        ))}
+        <div class="feature-card">
+          <div class="icon-wrapper"><i data-lucide="shopping-bag"></i></div>
+          <h3>{lang === 'zh' ? '可负担入门套装' : 'Affordable Starter Kits'}</h3>
+          <p>{lang === 'zh' ? '把 RM50–RM100 的价格偏好转化为低门槛产品。' : 'Turns the RM50–RM100 willingness-to-pay finding into a low-barrier offer.'}</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-wrapper"><i data-lucide="building-2"></i></div>
+          <h3>{lang === 'zh' ? '屋顶与阳台绿化' : 'Rooftop & Balcony Greening'}</h3>
+          <p>{lang === 'zh' ? '回应 74% 受访者对未来绿化服务的兴趣。' : 'Responds to the 74% interest in future rooftop and balcony services.'}</p>
+        </div>
+        <div class="feature-card">
+          <div class="icon-wrapper"><i data-lucide="users"></i></div>
+          <h3>{lang === 'zh' ? '社区花园项目' : 'Community Garden Program'}</h3>
+          <p>{lang === 'zh' ? '将社区参与和可持续生活转化为共享花园服务。' : 'Turns community interest and sustainable living into a shared garden service.'}</p>
+        </div>
       </div>
     </div>
   </section>
@@ -126,7 +191,11 @@ const productsPath = getLocalizedPath('/products', lang);
     <div class="container text-center">
       <h2>{t('home.ctaTitle')}</h2>
       <p>{t('home.ctaDesc')}</p>
-      <a href={designPath} class="btn btn-secondary btn-large">{t('btn.tryDesigner')}</a>
+      <div class="hero-buttons" style="justify-content:center;margin-bottom:0;">
+        <a href={designPath} class="btn btn-secondary btn-large">{t('btn.tryDesigner')}</a>
+        <a href={productsPath} class="btn btn-outline btn-large">{t('btn.explore')}</a>
+        <a href={communityPath} class="btn btn-outline btn-large">{t('nav.community')}</a>
+      </div>
     </div>
   </section>
 </BaseLayout>

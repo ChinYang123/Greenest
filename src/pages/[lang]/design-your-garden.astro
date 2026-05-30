@@ -3,56 +3,50 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHeader from '../../components/PageHeader.astro';
 import SectionHeader from '../../components/SectionHeader.astro';
 import GardenDesigner from '../../components/garden-designer/GardenDesigner.astro';
-import MockForm from '../../components/MockForm.astro';
 import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
 
 export const getStaticPaths = langStaticPaths;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-// Roof-garden service content, merged into this page.
-const steps = [
-  { n: 1, title: t('roof.step1'), desc: t('roof.step1Desc') },
-  { n: 2, title: t('roof.step2'), desc: t('roof.step2Desc') },
-  { n: 3, title: t('roof.step3'), desc: t('roof.step3Desc') },
-];
-const fields = [
-  { name: 'name', label: t('form.name'), type: 'text' as const, required: true },
-  { name: 'email', label: t('form.email'), type: 'email' as const, required: true },
-  { name: 'phone', label: t('form.phone'), type: 'tel' as const, required: false },
-  { name: 'spaceType', label: t('form.spaceType'), type: 'select' as const, required: true, options: [t('cfg.space.rooftop'), t('cfg.space.balcony'), t('cfg.space.indoor')] },
-  { name: 'message', label: t('form.message'), type: 'textarea' as const, required: false },
-];
+const plannerEvidence = lang === 'zh'
+  ? [
+      { icon: 'layout-grid', title: '空间匹配', desc: '根据阳台、屋顶或室内空间，推荐适合有限城市居住环境的套装。' },
+      { icon: 'sun', title: '日照与植物目标', desc: '把日照条件和蔬菜、花卉、观赏植物等目标转化为简单建议。' },
+      { icon: 'wallet', title: '预算意识', desc: '优先推荐符合预算的套装，呼应调研中的价格敏感度。' },
+    ]
+  : [
+      { icon: 'layout-grid', title: 'Space matching', desc: 'Recommends kits for balcony, rooftop, or indoor spaces in limited urban homes.' },
+      { icon: 'sun', title: 'Sunlight and plant goals', desc: 'Turns sunlight conditions and vegetable, flower, or decorative goals into simple suggestions.' },
+      { icon: 'wallet', title: 'Budget awareness', desc: 'Prioritizes kits within the visitor’s budget, reflecting the report’s price-sensitivity findings.' },
+    ];
 ---
 <BaseLayout title={t('cfg.title')} description={t('cfg.subtitle')}>
   <PageHeader title={t('cfg.title')} subtitle={t('cfg.subtitle')} />
 
   <section>
     <div class="container">
-      <GardenDesigner />
-    </div>
-  </section>
-
-  <!-- Roof Garden Service (merged) -->
-  <section class="section--surface">
-    <div class="container">
-      <SectionHeader title={t('roof.title')} subtitle={t('roof.subtitle')} />
-      <div class="steps-grid">
-        {steps.map((s) => (
-          <div class="step-card">
-            <div class="step-num">{s.n}</div>
-            <h3>{s.title}</h3>
-            <p>{s.desc}</p>
+      <SectionHeader
+        title={lang === 'zh' ? '个性化规划，而不是复杂 AI' : 'Personalized planning, not complex AI'}
+        subtitle={lang === 'zh'
+          ? '此原型使用清晰的规则，根据空间、预算、日照与种植目标生成建议，展示 CityGarden 如何降低新手不确定性。'
+          : 'This prototype uses transparent rules to recommend setups from space, budget, sunlight, and growing goals, showing how CityGarden reduces beginner uncertainty.'}
+      />
+      <div class="grid grid-3">
+        {plannerEvidence.map((item) => (
+          <div class="feature-card">
+            <div class="icon-wrapper"><i data-lucide={item.icon}></i></div>
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section>
+  <section class="section--surface">
     <div class="container">
-      <SectionHeader title={t('roof.formTitle')} />
-      <MockForm fields={fields} submitLabel={t('btn.submit')} />
+      <GardenDesigner />
     </div>
   </section>
 </BaseLayout>

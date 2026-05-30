@@ -1,8 +1,8 @@
 {
-  "name": "greennest",
+  "name": "citygarden",
   "type": "module",
   "version": "1.0.0",
-  "description": "GreenNest — Sustainable Urban Gardening Platform (by CityGarden)",
+  "description": "CityGarden — Sustainable Urban Gardening Platform",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

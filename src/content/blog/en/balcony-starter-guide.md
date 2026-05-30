@@ -27,7 +27,7 @@ Most strata properties in Malaysia permit container gardening on balconies. Hang
 
 Bring a tape measure to your balcony. Note the width, depth, and ceiling height. You want at least 60 cm of depth to fit a wall planter and still walk past it comfortably.
 
-**What to buy (if you don't have a GreenNest kit):**
+**What to buy (or compare with a CityGarden starter kit):**
 - Vertical wall planter or 3–5 hanging pots
 - COCO peat potting mix (avoid garden soil — it compacts and drains poorly in containers)
 - Seeds or seedlings: lettuce, kangkung, coriander, and one chilli plant are a solid first set
@@ -58,7 +58,7 @@ In Malaysia's heat (average 32–34 °C in Klang Valley), container plants dry o
 - **Evening check (6–7 pm):** Press a finger 3 cm into the soil. If it's dry, water lightly. If it's still moist, skip it.
 - **Rain days:** Skip watering entirely — containers collect rainwater efficiently.
 
-**Tip:** A self-watering reservoir (included in the GreenNest Smart Kit) handles this automatically, filling from a 2 L tank and wicking moisture to roots on demand.
+**Tip:** A self-watering reservoir, like the one proposed in the CityGarden Self-Watering Upgrade Kit, can simplify this routine by wicking moisture to roots on demand.
 
 ---
 
@@ -76,4 +76,4 @@ Chillies take 60–90 days to fruit. Think of them as a background project while
 
 **Overwatering.** It kills more container plants in Malaysia than any other cause. Tropical humidity slows evaporation and roots sitting in waterlogged soil rot quickly. Always check soil moisture before watering, and make sure every container has drainage holes.
 
-If you want a tailored plant list for your specific balcony size, light level, and goals, use our [Garden Designer](/en/design-your-garden) — it takes three minutes and recommends exactly what to plant and when.
+If you want a suggested plant list for your balcony size, light level, and goals, use our [Garden Planner](/en/design-your-garden) for a rule-based prototype recommendation.

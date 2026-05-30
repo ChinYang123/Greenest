@@ -14,7 +14,7 @@ A mid-sized café in Kuala Lumpur uses approximately 15–25 kg of fresh herbs a
 
 The upfront cost of a rooftop garden installation varies by size and complexity, but most commercial setups with automated irrigation pay back their installation cost within 14–24 months purely through produce savings. After breakeven, the ongoing savings compound year after year.
 
-One of GreenNest's clients in Petaling Jaya — a specialty coffee shop with a 40 m² rooftop — calculated RM 1,600 per month in saved ingredient costs after switching to on-site production for their herb blends, edible flowers, and salad leaves. That is RM 19,200 per year flowing back into the business.
+For a presentation prototype, CityGarden models a Petaling Jaya specialty café with a 40 m² rooftop and estimates how on-site herb, edible-flower, and salad production could reduce monthly ingredient purchases. The exact savings would depend on crop choice, yield, labour, and maintenance frequency.
 
 ## The temperature benefit
 
@@ -30,7 +30,7 @@ Social media is a multiplier. Rooftop gardens photograph beautifully, and F&B bu
 
 ## What a typical commercial installation looks like
 
-GreenNest's commercial rooftop process starts with a site assessment — we review the structural load capacity and waterproofing condition before any planting happens. Most flat rooftops in Malaysian shophouses and commercial blocks are suitable; older buildings occasionally need minor waterproofing repairs before we begin.
+CityGarden's proposed commercial rooftop process starts with a site assessment — the prototype service reviews structural load capacity and waterproofing condition before any planting plan is proposed. Most flat rooftops in Malaysian shophouses and commercial blocks are suitable; older buildings occasionally need minor waterproofing repairs before we begin.
 
 A standard 20–30 m² installation for a café typically includes:
 - **Raised beds** made from commercial-grade recycled-plastic panels (lightweight, food-safe, UV-resistant)
@@ -38,7 +38,7 @@ A standard 20–30 m² installation for a café typically includes:
 - **Plant selection** optimised for what the café's kitchen actually uses: typically Thai basil, lemon basil, mint, rosemary, pandan, chillies, cherry tomatoes, and assorted salad greens
 - **Monthly maintenance visits** to manage pruning, soil health, and pest control
 
-The full installation takes two to three days and causes minimal disruption to business operations.
+A small installation plan can often be staged over several days to reduce disruption to business operations.
 
 ## Is it right for your business?
 

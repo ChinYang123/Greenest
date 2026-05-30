@@ -13,7 +13,8 @@ interface Props {
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const { title, description } = Astro.props;
-const pageTitle = title ? `${title} · GreenNest` : `GreenNest — ${t('brand.tagline')}`;
+const brandName = t('brand.name');
+const pageTitle = title ? `${title} · ${brandName}` : `${brandName} — ${t('brand.tagline')}`;
 const pageDesc = description ?? t('home.heroDesc');
 ---
 <!doctype html>

@@ -1,6 +1,6 @@
 import type { Lang } from '../i18n/ui';
 
-// Pre-prepared reference photos shown in the Garden Designer result.
+// Pre-prepared reference photos shown in the Garden Planner result.
 // Real Creative-Commons photos shipped with the site (downloaded at build
 // time from LoremFlickr) — no AI generation, no runtime API call.
 // Keyed by SPACE × GOAL so the photos match the user's actual selection.

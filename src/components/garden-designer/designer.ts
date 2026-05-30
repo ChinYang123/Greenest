@@ -23,7 +23,7 @@ const GOAL_TYPES: Record<Goal, Plant['type'][] | 'any'> = {
   decorative: ['decorative'],
   mixed: 'any',
 };
-const STORAGE_KEY = 'greennest.designer.config';
+const STORAGE_KEY = 'citygarden.planner.config';
 
 function lang(): Lang {
   const l = document.documentElement.lang;
@@ -54,7 +54,7 @@ export type BudgetTier = 'starter' | 'standard' | 'premium';
 
 /** Budget range -> setup tier. Drives kit, plant count, and the result label. */
 export function budgetTier(budget: number): BudgetTier {
-  return budget >= 800 ? 'premium' : budget >= 250 ? 'standard' : 'starter';
+  return budget >= 500 ? 'premium' : budget >= 150 ? 'standard' : 'starter';
 }
 function plantCountFor(tier: BudgetTier): number {
   return tier === 'premium' ? 8 : tier === 'standard' ? 6 : 4;
@@ -146,7 +146,7 @@ function renderResult(root: HTMLElement, cfg: Config) {
     )
     .join('');
 
-  // Pre-prepared reference photos matched to the chosen SPACE × GOAL (no API / no model).
+  // Pre-prepared reference photos matched to the chosen SPACE × GOAL (no API / no AI model).
   const imgs = imagesFor(cfg.space, cfg.goal);
   const inspoHtml = imgs
     .map(
@@ -234,8 +234,8 @@ function resetAll(root: HTMLElement) {
   root.querySelectorAll<HTMLElement>('.option.selected').forEach((o) => o.classList.remove('selected'));
   const slider = root.querySelector<HTMLInputElement>('[data-budget]');
   const out = root.querySelector<HTMLElement>('[data-budget-value]');
-  if (slider) slider.value = '600';
-  if (out) out.textContent = 'RM600';
+  if (slider) slider.value = '100';
+  if (out) out.textContent = 'RM100';
   root.querySelector<HTMLElement>('[data-result]')!.innerHTML = '';
   root.querySelector<HTMLElement>('[data-step="result"]')!.classList.add('hidden');
   root.querySelector<HTMLElement>('[data-step="form"]')!.classList.remove('hidden');
