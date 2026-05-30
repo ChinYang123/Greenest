@@ -9,12 +9,12 @@ export interface TeamMember {
 
 export const team: TeamMember[] = [
   {
-    initials: 'AL',
-    name: { en: 'Aisha Lim', zh: '林爱莎' },
+    initials: 'AC',
+    name: { en: 'Aisha Chia', zh: '谢爱莎' },
     role: { en: 'Co-founder & CEO', zh: '联合创始人兼首席执行官' },
     bio: {
       en: 'Aisha holds an MBA from Universiti Malaya and spent eight years in sustainable property development before co-founding GreenNest in 2021. She leads long-term strategy, investor relations, and regional expansion across Malaysia, Singapore, and Indonesia. Under her leadership, GreenNest grew from a two-person startup to a team of 35 within three years.',
-      zh: '林爱莎拥有马来亚大学 MBA 学位，在联合创立 GreenNest 之前从事可持续地产开发八年。她主导公司长期战略、投资者关系，以及在马来西亚、新加坡和印度尼西亚的区域扩张。在她的带领下，GreenNest 在三年内从两人初创团队成长为拥有 35 名员工的企业。',
+      zh: '谢爱莎拥有马来亚大学 MBA 学位，在联合创立 GreenNest 之前从事可持续地产开发八年。她主导公司长期战略、投资者关系，以及在马来西亚、新加坡和印度尼西亚的区域扩张。在她的带领下，GreenNest 在三年内从两人初创团队成长为拥有 35 名员工的企业。',
     },
   },
   {
