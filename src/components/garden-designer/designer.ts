@@ -54,7 +54,7 @@ export type BudgetTier = 'starter' | 'standard' | 'premium';
 
 /** Budget range -> setup tier. Drives kit, plant count, and the result label. */
 export function budgetTier(budget: number): BudgetTier {
-  return budget >= 800 ? 'premium' : budget >= 300 ? 'standard' : 'starter';
+  return budget >= 800 ? 'premium' : budget >= 250 ? 'standard' : 'starter';
 }
 function plantCountFor(tier: BudgetTier): number {
   return tier === 'premium' ? 8 : tier === 'standard' ? 6 : 4;
@@ -76,11 +76,6 @@ export function recommend(cfg: Config): Recommendation | null {
     .map((p) => ({ p, s: scorePlant(p, cfg) }))
     .sort((a, b) => b.s - a.s || a.p.priceRM - b.p.priceRM);
 
-  // Budget range changes the outcome: more plants for a bigger budget.
-  const tier = budgetTier(cfg.budget);
-  const count = plantCountFor(tier);
-  const top = scored.slice(0, count).map((x) => x.p);
-
   // Kit selection: priced kits that fit the space.
   const fitting = products.filter((k) => k.priceRM > 0 && k.fits.includes(cfg.space as SpaceType));
   const pool = fitting.length ? fitting : products.filter((k) => k.priceRM > 0);
@@ -94,9 +89,25 @@ export function recommend(cfg: Config): Recommendation | null {
     kitBelowBudget = false;
   }
 
+  // Budget range changes the outcome: more plants for a bigger budget.
+  const tier = budgetTier(cfg.budget);
+  const count = plantCountFor(tier);
+
+  // Dynamically select plants to stay within the remaining budget.
+  let remainingBudget = cfg.budget - kit.priceRM;
+  const top: Plant[] = [];
+  for (const item of scored) {
+    if (top.length >= count) break;
+    // Always recommend at least 1 plant, otherwise stay within the remaining budget
+    if (top.length === 0 || remainingBudget >= item.p.priceRM) {
+      top.push(item.p);
+      remainingBudget -= item.p.priceRM;
+    }
+  }
+
   if (!top.length) return null;
 
-  const avgScore = scored.slice(0, count).reduce((sum, x) => sum + x.s, 0) / Math.min(count, scored.length);
+  const avgScore = scored.slice(0, top.length).reduce((sum, x) => sum + x.s, 0) / Math.min(top.length, scored.length);
   const matchPct = Math.max(80, Math.min(99, Math.round(78 + avgScore)));
   const plantsTotal = top.reduce((sum, p) => sum + p.priceRM, 0);
   const total = kit.priceRM + plantsTotal;

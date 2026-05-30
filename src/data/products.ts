@@ -16,6 +16,38 @@ export interface Product {
 
 export const products: Product[] = [
   {
+    id: 'eco-seed',
+    slug: 'eco-seed-kit',
+    name: { en: 'Eco Seed Kit', zh: '环保种子入门包' },
+    tagline: {
+      en: 'A budget-friendly way to begin growing fresh herbs and greens at home.',
+      zh: '经济实惠的家庭新鲜香草与叶菜种植入门包。',
+    },
+    description: {
+      en: 'Perfect for budget-conscious beginners or students living in hostels. Includes biodegradable pots, compressed organic coco-peat soil disks, and a curated selection of fast-growing seeds like spinach and mint. Simply add water and watch them sprout.',
+      zh: '最适合预算有限的新手或宿舍学生。包含可降解种植盆、压缩有机椰糠土饼以及精选的快速生长种子（如菠菜和薄荷）。只需加水即可看它们发芽生长。',
+    },
+    priceRM: 50,
+    featured: false,
+    fits: ['balcony', 'indoor'],
+    features: {
+      en: [
+        '6 biodegradable seed starter pots',
+        'Compressed organic coco-peat soil disks (6 pcs)',
+        'Eco-friendly wooden plant markers',
+        'Fast-sprouting seed packs: spinach and mint',
+        'Digital quick-start guide & care instruction sheets',
+      ],
+      zh: [
+        '6 个可降解育苗花盆',
+        '压缩有机椰糠土饼（6 个）',
+        '环保木质植物标签',
+        '快速发芽种子包：菠菜和薄荷',
+        '数字化快速入门与养护指南',
+      ],
+    },
+  },
+  {
     id: 'starter',
     slug: 'starter-kit',
     name: { en: 'Starter Kit', zh: '入门套装' },

@@ -121,6 +121,16 @@ export const ui = {
     'community.title': 'Community Garden Program',
     'community.subtitle': 'We help neighborhoods plan and care for shared green spaces that bring people together.',
     'community.formTitle': 'Register your community',
+    'community.heroTitle': 'Grow Together: Community Gardens',
+    'community.heroDesc': 'We design, install, and support shared garden spaces for apartment buildings, residential communities, and neighborhoods.',
+    'community.step1Title': '1. Planning & Design',
+    'community.step1Desc': 'We assess the space, analyze soil & light conditions, and plan the layout with inputs from residents.',
+    'community.step2Title': '2. Setup & Installation',
+    'community.step2Desc': 'Our professional crew constructs the raised beds, fills them with organic soil, and installs irrigation systems.',
+    'community.step3Title': '3. Workshops & Support',
+    'community.step3Desc': 'We host workshops to train residents in planting, harvesting, and compost management, with monthly visits.',
+    'community.caseTitle': 'Success Story: PPR Ampang',
+    'community.caseDesc': 'In partnership with local residents, we transformed an unused 250 m² concrete plot into a thriving community vegetable garden. Today, over 40 households actively grow kangkung, mustard greens, and chilies, reducing household expenses and building strong neighborhood bonds.',
 
     // gallery
     'gallery.title': 'Gallery',
@@ -314,6 +324,16 @@ export const ui = {
     'community.title': '社区花园项目',
     'community.subtitle': '我们帮助小区规划并打理公共绿地，促进邻里互动。',
     'community.formTitle': '为你的社区报名',
+    'community.heroTitle': '共同成长：社区菜园项目',
+    'community.heroDesc': '我们为高层公寓、住宅小区和社区街道设计、安装并支持共享绿化种植空间。',
+    'community.step1Title': '1. 规划与设计',
+    'community.step1Desc': '我们评估场地，分析土壤和日照条件，并结合居民的建议来规划整体布局。',
+    'community.step2Title': '2. 施工与安装',
+    'community.step2Desc': '我们的专业团队建造高架种植床、填充有机混合土壤并安装好灌溉系统。',
+    'community.step3Title': '3. 工作坊与支持',
+    'community.step3Desc': '我们举办种植培训，教大家播种、收割和堆肥，并提供每月上门维护与技术指导。',
+    'community.caseTitle': '成功案例：安邦 PPR 公寓',
+    'community.caseDesc': '我们与当地居民合作，将 250 平方米的闲置水泥空地改造成了生机勃勃的社区菜园。如今，超过 40 户家庭在此种植空心菜、芥菜和辣椒，不仅节省了伙食开支，也拉近了邻里之间的关系。',
 
     // gallery
     'gallery.title': '作品图库',

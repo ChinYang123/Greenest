@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import MockForm from '../../components/MockForm.astro';
+import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
+
+export const getStaticPaths = langStaticPaths;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const fields = [
+  { name: 'name', label: t('form.name'), type: 'text' as const, required: true },
+  { name: 'email', label: t('form.email'), type: 'email' as const, required: true },
+  { name: 'phone', label: t('form.phone'), type: 'tel' as const, required: true },
+  { name: 'community', label: t('form.community'), type: 'text' as const, required: true },
+  { name: 'units', label: t('form.units'), type: 'text' as const, required: false },
+  { name: 'message', label: t('form.message'), type: 'textarea' as const, required: false },
+];
+
+const steps = [
+  { icon: 'map', title: t('community.step1Title'), desc: t('community.step1Desc') },
+  { icon: 'hammer', title: t('community.step2Title'), desc: t('community.step2Desc') },
+  { icon: 'graduation-cap', title: t('community.step3Title'), desc: t('community.step3Desc') },
+];
+---
+<BaseLayout title={t('community.title')} description={t('community.subtitle')}>
+  <PageHeader title={t('community.heroTitle')} subtitle={t('community.heroDesc')} />
+
+  <!-- Steps / How it works -->
+  <section>
+    <div class="container">
+      <SectionHeader title={t('community.title')} subtitle={t('community.subtitle')} />
+      <div class="grid grid-3">
+        {steps.map((s) => (
+          <div class="feature-card text-center">
+            <div class="icon-wrapper" style="margin: 0 auto 1.5rem;"><i data-lucide={s.icon}></i></div>
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Story Case Study -->
+  <section class="section--surface">
+    <div class="container">
+      <div class="grid grid-2 align-items-center" style="gap:4rem;">
+        <div class="case-study-visual" style="background: linear-gradient(135deg, #1B5E20, #4C9F70); color: white; border-radius: 16px; padding: 4rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: var(--shadow-md);">
+          <i data-lucide="sprout" style="width: 64px; height: 64px; margin-bottom: 1.5rem;"></i>
+          <span style="font-family: var(--font-serif); font-size: 2rem; font-weight: 600; line-height: 1.2;">PPR Ampang</span>
+          <span style="margin-top: 0.5rem; opacity: 0.8; font-weight: 500; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Community Harvest Garden</span>
+        </div>
+        <div class="case-study-content">
+          <div class="badge" style="margin-bottom:1rem;">🌿 {t('home.testimonialsTitle')}</div>
+          <h2 style="font-family:var(--font-serif);font-size:2.25rem;margin-bottom:1.5rem;color:var(--text-main);">{t('community.caseTitle')}</h2>
+          <p style="font-size:1.1rem;line-height:1.7;color:var(--text-muted);margin-bottom:2rem;">{t('community.caseDesc')}</p>
+          <div class="stats-row" style="display:flex;gap:3rem;">
+            <div>
+              <div style="font-size:2.5rem;font-weight:700;color:var(--color-primary);line-height:1.1;">40+</div>
+              <div style="font-size:0.875rem;color:var(--text-muted);margin-top:0.25rem;">Active Families</div>
+            </div>
+            <div>
+              <div style="font-size:2.5rem;font-weight:700;color:var(--color-primary);line-height:1.1;">250 m²</div>
+              <div style="font-size:0.875rem;color:var(--text-muted);margin-top:0.25rem;">Transformed Plot</div>
+            </div>
+            <div>
+              <div style="font-size:2.5rem;font-weight:700;color:var(--color-primary);line-height:1.1;">RM1.5k</div>
+              <div style="font-size:0.875rem;color:var(--text-muted);margin-top:0.25rem;">Monthly Produce Savings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sign up form -->
+  <section>
+    <div class="container" style="max-width: 680px;">
+      <MockForm title={t('community.formTitle')} fields={fields} submitLabel={t('btn.register')} />
+    </div>
+  </section>
+</BaseLayout>
