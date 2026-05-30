@@ -1,7 +1,6 @@
 import { plants, type Plant, type Sunlight } from '../../data/plants';
 import { products, type Product, type SpaceType } from '../../data/products';
 import { ui, defaultLang, type Lang } from '../../i18n/ui';
-import { imagesFor } from '../../data/designerImages';
 
 type Goal = 'vegetables' | 'flowers' | 'decorative' | 'mixed';
 type Size = 'small' | 'medium' | 'large';
@@ -128,6 +127,38 @@ function buildLayout(size: Size, recPlants: Plant[]): string {
   return `<div class="layout-grid" style="grid-template-columns:repeat(${cols},1fr)">${cells}</div>`;
 }
 
+function requirementCards(cfg: Config, rec: Recommendation): string {
+  const tk = (k: string) => t(k as Parameters<typeof t>[0]);
+  const maintenanceKey = rec.tier === 'starter' ? 'cfg.req.maintenanceStarter' : 'cfg.req.maintenanceUpgrade';
+  const cards = [
+    { icon: '📐', title: tk('cfg.req.spaceTitle'), body: tk(`cfg.req.space.${cfg.size}`) },
+    { icon: '☀️', title: tk('cfg.req.sunTitle'), body: tk(`cfg.req.sun.${cfg.sunlight}`) },
+    { icon: '💧', title: tk('cfg.req.maintenanceTitle'), body: tk(maintenanceKey) },
+    { icon: '🧰', title: tk('cfg.req.materialTitle'), body: tk(`cfg.req.material.${cfg.space}`) },
+  ];
+
+  return cards
+    .map(
+      (card) => `
+        <article class="requirement-card">
+          <span class="req-icon">${card.icon}</span>
+          <div>
+            <h4>${card.title}</h4>
+            <p>${card.body}</p>
+          </div>
+        </article>`
+    )
+    .join('');
+}
+
+function buildConceptPreview(size: Size, recPlants: Plant[]): string {
+  const pots = recPlants
+    .slice(0, 6)
+    .map((p, i) => `<span class="preview-pot pot-${(i % 3) + 1}" title="${p.name[lang()]}">${p.emoji}</span>`)
+    .join('');
+  return `<div class="preview-stage preview-${size}" aria-hidden="true"><div class="preview-frame">${pots}</div></div>`;
+}
+
 function renderResult(root: HTMLElement, cfg: Config) {
   const resultEl = root.querySelector<HTMLElement>('[data-result]')!;
   const rec = recommend(cfg);
@@ -143,15 +174,6 @@ function renderResult(root: HTMLElement, cfg: Config) {
     .map(
       (p) =>
         `<div class="plant"><span class="p-emoji">${p.emoji}</span><span>${p.name[l]}</span><span class="p-price">RM${p.priceRM}</span></div>`
-    )
-    .join('');
-
-  // Pre-prepared reference photos matched to the chosen SPACE × GOAL (no API / no AI model).
-  const imgs = imagesFor(cfg.space, cfg.goal);
-  const inspoHtml = imgs
-    .map(
-      (im) =>
-        `<figure class="inspo"><img src="${im.src}" alt="${im.alt[l]}" loading="lazy" width="640" height="480" /><figcaption>${im.alt[l]}</figcaption></figure>`
     )
     .join('');
 
@@ -187,10 +209,23 @@ function renderResult(root: HTMLElement, cfg: Config) {
       ${buildLayout(cfg.size as Size, rec.plants)}
       <div class="total-row"><span>${t('cfg.estTotal')}</span><span class="total-amt">RM${rec.total}</span></div>
     </div>
-    <div class="panel inspiration" style="grid-column:1/-1">
-      <h3>${t('cfg.inspiration')}</h3>
-      <p class="designer-note">${t('cfg.inspirationNote')}</p>
-      <div class="inspo-grid">${inspoHtml}</div>
+    <div class="panel setup-requirements" style="grid-column:1/-1">
+      <div class="result-panel-head">
+        <div>
+          <span class="eyebrow">${t('cfg.requirementsEyebrow')}</span>
+          <h3>${t('cfg.requirements')}</h3>
+          <p class="designer-note">${t('cfg.requirementsNote')}</p>
+        </div>
+        <span class="choice-chip tier">${tierLabel}</span>
+      </div>
+      <div class="requirements-grid">${requirementCards(cfg, rec)}</div>
+      <div class="concept-preview">
+        <div>
+          <h4>${t('cfg.previewTitle')}</h4>
+          <p>${t('cfg.previewNote')}</p>
+        </div>
+        ${buildConceptPreview(cfg.size as Size, rec.plants)}
+      </div>
     </div>
     <div class="result-actions">
       <a href="/${l}/consultation" class="btn btn-primary">${t('cfg.bookCta')}</a>

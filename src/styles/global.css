@@ -476,17 +476,33 @@ html.reveal-ready .reveal-init.reveal-in {
 .faq-item[open] summary::after { content: '−'; }
 .faq-item p { color: var(--text-muted); padding: 0 0 1rem; }
 
-/* Garden Planner — pre-prepared reference photos */
-.inspiration .inspo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
-.inspo { margin: 0; }
-.inspo img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
-  border-radius: var(--border-radius-sm); border: 1px solid var(--border);
-  box-shadow: var(--shadow-sm); background: var(--secondary-light);
+/* Garden Planner — requirements and concept preview */
+.result-panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+.result-panel-head h3 { margin: 0.25rem 0 0; display: block; }
+.eyebrow { display: inline-flex; color: var(--primary); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
+.requirements-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.85rem; }
+.requirement-card { display: flex; gap: 0.75rem; align-items: flex-start; padding: 1rem; border: 1px solid var(--border); border-radius: var(--border-radius-sm); background: var(--surface); }
+.requirement-card .req-icon { flex: 0 0 auto; width: 2.25rem; height: 2.25rem; border-radius: 50%; display: grid; place-items: center; background: var(--secondary-light); }
+.requirement-card h4 { margin-bottom: 0.25rem; font-size: 0.98rem; }
+.requirement-card p, .concept-preview p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.55; }
+.concept-preview { margin-top: 1rem; display: grid; grid-template-columns: 1fr 1.2fr; gap: 1rem; align-items: center; padding: 1rem; border-radius: var(--border-radius-md); background: linear-gradient(135deg, var(--secondary-light), #fff); border: 1px dashed var(--border); }
+.concept-preview h4 { margin-bottom: 0.35rem; }
+.preview-stage { min-height: 170px; display: flex; align-items: flex-end; justify-content: center; padding: 1rem; border-radius: var(--border-radius-sm); background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(235,244,230,0.85)); overflow: hidden; }
+.preview-frame { width: min(100%, 360px); min-height: 120px; border-bottom: 10px solid var(--primary-dark); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 0.55rem; padding: 1rem 0.75rem 0; position: relative; }
+.preview-frame::before, .preview-frame::after { content: ''; position: absolute; inset: auto 8% 42% 8%; border-top: 3px solid rgba(42, 91, 62, 0.28); }
+.preview-frame::after { inset: auto 16% 72% 16%; }
+.preview-pot { z-index: 1; width: 2.75rem; height: 2.75rem; display: grid; place-items: center; border-radius: 0.8rem 0.8rem 1.1rem 1.1rem; background: #f4d8a8; box-shadow: var(--shadow-sm); font-size: 1.35rem; }
+.preview-pot.pot-2 { background: #d7b892; }
+.preview-pot.pot-3 { background: #ead5bf; }
+.preview-large .preview-pot { width: 3rem; height: 3rem; }
+.preview-small .preview-frame { width: min(100%, 260px); }
+@media (max-width: 900px) {
+  .requirements-grid { grid-template-columns: repeat(2, 1fr); }
+  .concept-preview { grid-template-columns: 1fr; }
 }
-.inspo figcaption { margin-top: 0.4rem; font-size: 0.82rem; color: var(--text-muted); text-align: center; }
-@media (max-width: 640px) {
-  .inspiration .inspo-grid { grid-template-columns: 1fr 1fr; }
+@media (max-width: 560px) {
+  .result-panel-head { flex-direction: column; }
+  .requirements-grid { grid-template-columns: 1fr; }
 }
 
 /* Garden Planner — "your choices" summary bar */
