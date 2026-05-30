@@ -488,3 +488,10 @@ html.reveal-ready .reveal-init.reveal-in {
 @media (max-width: 640px) {
   .inspiration .inspo-grid { grid-template-columns: 1fr 1fr; }
 }
+
+/* Garden Designer — "your choices" summary bar */
+.choices-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; padding: 0.85rem 1.1rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); }
+.choices-label { font-weight: 600; color: var(--text-muted); font-size: 0.9rem; margin-right: 0.25rem; }
+.choice-chip { font-size: 0.82rem; font-weight: 600; padding: 0.3rem 0.7rem; border-radius: 999px; background: var(--secondary-light); color: var(--primary-dark); white-space: nowrap; }
+.choice-chip.tier { background: var(--accent-soft); color: var(--accent-dark); margin-left: auto; }
+@media (max-width: 640px) { .choice-chip.tier { margin-left: 0; } }

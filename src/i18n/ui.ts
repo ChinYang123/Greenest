@@ -199,6 +199,10 @@ export const ui = {
     'cfg.bookCta': 'Book a consultation',
     'cfg.inspiration': 'How your garden could look',
     'cfg.inspirationNote': 'Real reference photos matched to your selection.',
+    'cfg.yourChoices': 'Your selection:',
+    'cfg.tier.starter': 'Starter setup',
+    'cfg.tier.standard': 'Standard setup',
+    'cfg.tier.premium': 'Premium setup',
   },
   zh: {
     // brand
@@ -388,6 +392,10 @@ export const ui = {
     'cfg.bookCta': '预约咨询',
     'cfg.inspiration': '你的花园大概长这样',
     'cfg.inspirationNote': '根据你的选择匹配的真实参考照片。',
+    'cfg.yourChoices': '你的选择：',
+    'cfg.tier.starter': '入门配置',
+    'cfg.tier.standard': '标准配置',
+    'cfg.tier.premium': '高级配置',
   },
 } as const;
 

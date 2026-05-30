@@ -1,7 +1,7 @@
 import { plants, type Plant, type Sunlight } from '../../data/plants';
 import { products, type Product, type SpaceType } from '../../data/products';
 import { ui, defaultLang, type Lang } from '../../i18n/ui';
-import { designerImages } from '../../data/designerImages';
+import { imagesFor } from '../../data/designerImages';
 
 type Goal = 'vegetables' | 'flowers' | 'decorative' | 'mixed';
 type Size = 'small' | 'medium' | 'large';
@@ -50,12 +50,23 @@ function scorePlant(plant: Plant, cfg: Config): number {
   return score;
 }
 
+export type BudgetTier = 'starter' | 'standard' | 'premium';
+
+/** Budget range -> setup tier. Drives kit, plant count, and the result label. */
+export function budgetTier(budget: number): BudgetTier {
+  return budget >= 800 ? 'premium' : budget >= 300 ? 'standard' : 'starter';
+}
+function plantCountFor(tier: BudgetTier): number {
+  return tier === 'premium' ? 8 : tier === 'standard' ? 6 : 4;
+}
+
 export interface Recommendation {
   kit: Product;
   kitBelowBudget: boolean;
   matchPct: number;
   plants: Plant[];
   total: number;
+  tier: BudgetTier;
 }
 
 export function recommend(cfg: Config): Recommendation | null {
@@ -65,7 +76,10 @@ export function recommend(cfg: Config): Recommendation | null {
     .map((p) => ({ p, s: scorePlant(p, cfg) }))
     .sort((a, b) => b.s - a.s || a.p.priceRM - b.p.priceRM);
 
-  const top = scored.slice(0, 6).map((x) => x.p);
+  // Budget range changes the outcome: more plants for a bigger budget.
+  const tier = budgetTier(cfg.budget);
+  const count = plantCountFor(tier);
+  const top = scored.slice(0, count).map((x) => x.p);
 
   // Kit selection: priced kits that fit the space.
   const fitting = products.filter((k) => k.priceRM > 0 && k.fits.includes(cfg.space as SpaceType));
@@ -82,12 +96,12 @@ export function recommend(cfg: Config): Recommendation | null {
 
   if (!top.length) return null;
 
-  const avgScore = scored.slice(0, 6).reduce((sum, x) => sum + x.s, 0) / Math.min(6, scored.length);
+  const avgScore = scored.slice(0, count).reduce((sum, x) => sum + x.s, 0) / Math.min(count, scored.length);
   const matchPct = Math.max(80, Math.min(99, Math.round(78 + avgScore)));
   const plantsTotal = top.reduce((sum, p) => sum + p.priceRM, 0);
   const total = kit.priceRM + plantsTotal;
 
-  return { kit, kitBelowBudget, matchPct, plants: top, total };
+  return { kit, kitBelowBudget, matchPct, plants: top, total, tier };
 }
 
 function buildLayout(size: Size, recPlants: Plant[]): string {
@@ -121,8 +135,8 @@ function renderResult(root: HTMLElement, cfg: Config) {
     )
     .join('');
 
-  // Pre-prepared reference photos matched to the chosen goal (no API / no model).
-  const imgs = designerImages[(cfg.goal || 'mixed') as keyof typeof designerImages] ?? designerImages.mixed;
+  // Pre-prepared reference photos matched to the chosen SPACE × GOAL (no API / no model).
+  const imgs = imagesFor(cfg.space, cfg.goal);
   const inspoHtml = imgs
     .map(
       (im) =>
@@ -130,13 +144,31 @@ function renderResult(root: HTMLElement, cfg: Config) {
     )
     .join('');
 
+  // "Your choices" summary so the result clearly reflects every input.
+  const tk = (k: string) => t(k as Parameters<typeof t>[0]);
+  const summaryHtml = [
+    tk(`cfg.space.${cfg.space}`),
+    tk(`cfg.size.${cfg.size}`),
+    tk(`cfg.sun.${cfg.sunlight}`),
+    tk(`cfg.goal.${cfg.goal}`),
+    `RM${cfg.budget}`,
+  ]
+    .map((s) => `<span class="choice-chip">${s}</span>`)
+    .join('');
+  const tierLabel = tk(`cfg.tier.${rec.tier}`);
+
   resultEl.innerHTML = `
+    <div class="choices-bar" style="grid-column:1/-1">
+      <span class="choices-label">${t('cfg.yourChoices')}</span>
+      ${summaryHtml}
+      <span class="choice-chip tier">${tierLabel}</span>
+    </div>
     <div class="panel">
       <h3>${t('cfg.recommendedKit')} <span class="match-pill">${rec.matchPct}% ${t('cfg.match')}</span></h3>
       <div class="kit-line"><strong>${rec.kit.name[l]}</strong><span class="kit-price">${kitPrice}</span></div>
       <p class="designer-note">${rec.kit.tagline[l]}</p>
       ${rec.kitBelowBudget ? '' : `<p class="designer-note">⚠️ ${t('cfg.kitNote')}</p>`}
-      <h3 style="margin-top:1.5rem;">${t('cfg.recommendedPlants')}</h3>
+      <h3 style="margin-top:1.5rem;">${t('cfg.recommendedPlants')} (${rec.plants.length})</h3>
       <div class="plant-list">${plantRows}</div>
     </div>
     <div class="panel">

@@ -3,6 +3,8 @@ import type { Lang } from '../i18n/ui';
 // Pre-prepared reference photos shown in the Garden Designer result.
 // Real Creative-Commons photos shipped with the site (downloaded at build
 // time from LoremFlickr) — no AI generation, no runtime API call.
+// Keyed by SPACE × GOAL so the photos match the user's actual selection.
+export type DesignerSpace = 'balcony' | 'rooftop' | 'indoor';
 export type DesignerGoal = 'vegetables' | 'flowers' | 'decorative' | 'mixed';
 
 export interface DesignerImage {
@@ -10,25 +12,43 @@ export interface DesignerImage {
   alt: Record<Lang, string>;
 }
 
-export const designerImages: Record<DesignerGoal, DesignerImage[]> = {
-  vegetables: [
-    { src: '/images/designer/vegetables-1.jpg', alt: { en: 'Vegetable garden', zh: '蔬菜花园' } },
-    { src: '/images/designer/vegetables-2.jpg', alt: { en: 'Vegetables growing on a balcony', zh: '阳台上种植的蔬菜' } },
-    { src: '/images/designer/vegetables-3.jpg', alt: { en: 'Home-grown tomatoes', zh: '自家种的番茄' } },
-  ],
-  flowers: [
-    { src: '/images/designer/flowers-1.jpg', alt: { en: 'Flower garden', zh: '花卉花园' } },
-    { src: '/images/designer/flowers-2.jpg', alt: { en: 'Flowers on a balcony', zh: '阳台上的花卉' } },
-    { src: '/images/designer/flowers-3.jpg', alt: { en: 'Blooming flowers', zh: '盛开的花朵' } },
-  ],
-  decorative: [
-    { src: '/images/designer/decorative-1.jpg', alt: { en: 'Decorative houseplants', zh: '观赏室内植物' } },
-    { src: '/images/designer/decorative-2.jpg', alt: { en: 'Indoor plants', zh: '室内植物' } },
-    { src: '/images/designer/decorative-3.jpg', alt: { en: 'Potted succulents', zh: '盆栽多肉' } },
-  ],
-  mixed: [
-    { src: '/images/designer/mixed-1.jpg', alt: { en: 'Urban garden', zh: '城市花园' } },
-    { src: '/images/designer/mixed-2.jpg', alt: { en: 'Rooftop garden', zh: '屋顶花园' } },
-    { src: '/images/designer/mixed-3.jpg', alt: { en: 'Container garden mix', zh: '混合容器花园' } },
-  ],
+const spaceLabel: Record<DesignerSpace, Record<Lang, string>> = {
+  balcony: { en: 'Balcony', zh: '阳台' },
+  rooftop: { en: 'Rooftop', zh: '屋顶' },
+  indoor: { en: 'Indoor', zh: '室内' },
 };
+const goalLabel: Record<DesignerGoal, Record<Lang, string>> = {
+  vegetables: { en: 'vegetable garden', zh: '菜园' },
+  flowers: { en: 'flower garden', zh: '花园' },
+  decorative: { en: 'plant display', zh: '观赏绿植' },
+  mixed: { en: 'mixed garden', zh: '混合花园' },
+};
+
+const SPACES: DesignerSpace[] = ['balcony', 'rooftop', 'indoor'];
+const GOALS: DesignerGoal[] = ['vegetables', 'flowers', 'decorative', 'mixed'];
+
+function build(): Record<DesignerSpace, Record<DesignerGoal, DesignerImage[]>> {
+  const out = {} as Record<DesignerSpace, Record<DesignerGoal, DesignerImage[]>>;
+  for (const s of SPACES) {
+    out[s] = {} as Record<DesignerGoal, DesignerImage[]>;
+    for (const g of GOALS) {
+      out[s][g] = [1, 2, 3].map((n) => ({
+        src: `/images/designer/${s}-${g}-${n}.jpg`,
+        alt: {
+          en: `${spaceLabel[s].en} ${goalLabel[g].en}`,
+          zh: `${spaceLabel[s].zh}${goalLabel[g].zh}`,
+        },
+      }));
+    }
+  }
+  return out;
+}
+
+export const designerImages = build();
+
+/** Safe lookup with a sensible fallback. */
+export function imagesFor(space: string, goal: string): DesignerImage[] {
+  const s = (SPACES.includes(space as DesignerSpace) ? space : 'balcony') as DesignerSpace;
+  const g = (GOALS.includes(goal as DesignerGoal) ? goal : 'mixed') as DesignerGoal;
+  return designerImages[s][g];
+}
