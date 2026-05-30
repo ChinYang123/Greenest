@@ -1,6 +1,7 @@
 import { plants, type Plant, type Sunlight } from '../../data/plants';
 import { products, type Product, type SpaceType } from '../../data/products';
 import { ui, defaultLang, type Lang } from '../../i18n/ui';
+import { designerImages } from '../../data/designerImages';
 
 type Goal = 'vegetables' | 'flowers' | 'decorative' | 'mixed';
 type Size = 'small' | 'medium' | 'large';
@@ -120,6 +121,15 @@ function renderResult(root: HTMLElement, cfg: Config) {
     )
     .join('');
 
+  // Pre-prepared reference photos matched to the chosen goal (no API / no model).
+  const imgs = designerImages[(cfg.goal || 'mixed') as keyof typeof designerImages] ?? designerImages.mixed;
+  const inspoHtml = imgs
+    .map(
+      (im) =>
+        `<figure class="inspo"><img src="${im.src}" alt="${im.alt[l]}" loading="lazy" width="640" height="480" /><figcaption>${im.alt[l]}</figcaption></figure>`
+    )
+    .join('');
+
   resultEl.innerHTML = `
     <div class="panel">
       <h3>${t('cfg.recommendedKit')} <span class="match-pill">${rec.matchPct}% ${t('cfg.match')}</span></h3>
@@ -133,6 +143,11 @@ function renderResult(root: HTMLElement, cfg: Config) {
       <h3>${t('cfg.layout')}</h3>
       ${buildLayout(cfg.size as Size, rec.plants)}
       <div class="total-row"><span>${t('cfg.estTotal')}</span><span class="total-amt">RM${rec.total}</span></div>
+    </div>
+    <div class="panel inspiration" style="grid-column:1/-1">
+      <h3>${t('cfg.inspiration')}</h3>
+      <p class="designer-note">${t('cfg.inspirationNote')}</p>
+      <div class="inspo-grid">${inspoHtml}</div>
     </div>
     <div class="result-actions">
       <a href="/${l}/consultation" class="btn btn-primary">${t('cfg.bookCta')}</a>

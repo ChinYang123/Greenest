@@ -107,15 +107,21 @@ main { min-height: 60vh; }
 }
 .navbar.scrolled { box-shadow: var(--shadow-md); background: rgba(255,255,255,0.95); }
 .nav-container {
-  max-width: 1320px; margin: 0 auto; padding: 0.85rem 2rem;
-  display: flex; justify-content: space-between; align-items: center; gap: 1.25rem;
+  max-width: 1240px; margin: 0 auto; padding: 0.85rem 2rem;
+  display: flex; justify-content: flex-start; align-items: center; gap: 1.75rem;
   flex-wrap: nowrap;
 }
 .logo { display: flex; align-items: center; gap: 0.5rem; font-family: var(--font-heading); font-weight: 800; font-size: 1.45rem; color: var(--primary); white-space: nowrap; flex-shrink: 0; }
-.nav-links { display: flex; gap: 0.65rem; flex-wrap: nowrap; }
-.nav-links a { font-weight: 500; color: var(--text-muted); font-size: 0.9rem; white-space: nowrap; }
-.nav-links a:hover, .nav-links a.active { color: var(--primary); }
-.nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+.nav-links { display: flex; gap: 0.2rem; flex-wrap: nowrap; }
+.nav-links a {
+  font-weight: 500; color: var(--text-muted); font-size: 0.9rem; white-space: nowrap;
+  padding: 0.45rem 0.7rem; border-radius: var(--border-radius-sm);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-links a:hover { color: var(--primary-dark); background: rgba(33, 96, 60, 0.08); }
+.nav-links a.active { color: var(--primary-dark); background: var(--secondary-light); font-weight: 600; }
+/* Push the actions group to the far right; everything else stays grouped left. */
+.nav-actions { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; margin-left: auto; }
 .nav-actions .btn { white-space: nowrap; padding: 0.6rem 1rem; }
 .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; color: var(--text-main); }
 
@@ -409,7 +415,7 @@ section { padding: clamp(3.5rem, 2rem + 6vw, 6rem) 0; }
 /* Responsive */
 /* Collapse the full nav to the hamburger when it can't fit one line,
    so the header is always exactly one line. */
-@media (max-width: 1200px) {
+@media (max-width: 980px) {
   .nav-links, .nav-actions .btn, .nav-actions .lang-switch { display: none; }
   .mobile-menu-btn { display: block; }
 }
@@ -469,3 +475,16 @@ html.reveal-ready .reveal-init.reveal-in {
 .faq-item summary::after { content: '+'; color: var(--accent); font-size: 1.3rem; line-height: 1; transition: transform 0.2s; }
 .faq-item[open] summary::after { content: '−'; }
 .faq-item p { color: var(--text-muted); padding: 0 0 1rem; }
+
+/* Garden Designer — pre-prepared reference photos */
+.inspiration .inspo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 0.75rem; }
+.inspo { margin: 0; }
+.inspo img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: var(--border-radius-sm); border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm); background: var(--secondary-light);
+}
+.inspo figcaption { margin-top: 0.4rem; font-size: 0.82rem; color: var(--text-muted); text-align: center; }
+@media (max-width: 640px) {
+  .inspiration .inspo-grid { grid-template-columns: 1fr 1fr; }
+}

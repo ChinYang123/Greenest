@@ -1,46 +1,20 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import PageHeader from '../../components/PageHeader.astro';
-import SectionHeader from '../../components/SectionHeader.astro';
-import MockForm from '../../components/MockForm.astro';
-import { getLangFromUrl, useTranslations, langStaticPaths } from '../../i18n/utils';
-
+// Roof Garden Service has been merged into the Garden Designer page.
+// Keep this URL working (older links / blog posts point here) by redirecting.
+import { langStaticPaths, getLangFromUrl } from '../../i18n/utils';
 export const getStaticPaths = langStaticPaths;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
-
-const steps = [
-  { n: 1, title: t('roof.step1'), desc: t('roof.step1Desc') },
-  { n: 2, title: t('roof.step2'), desc: t('roof.step2Desc') },
-  { n: 3, title: t('roof.step3'), desc: t('roof.step3Desc') },
-];
-const fields = [
-  { name: 'name', label: t('form.name'), type: 'text' as const, required: true },
-  { name: 'email', label: t('form.email'), type: 'email' as const, required: true },
-  { name: 'phone', label: t('form.phone'), type: 'tel' as const, required: false },
-  { name: 'spaceType', label: t('form.spaceType'), type: 'select' as const, required: true, options: [t('cfg.space.rooftop'), t('cfg.space.balcony'), t('cfg.space.indoor')] },
-  { name: 'message', label: t('form.message'), type: 'textarea' as const, required: false },
-];
+const target = `/${lang}/design-your-garden`;
 ---
-<BaseLayout title={t('roof.title')} description={t('roof.subtitle')}>
-  <PageHeader title={t('roof.title')} subtitle={t('roof.subtitle')} />
-  <section>
-    <div class="container">
-      <div class="steps-grid">
-        {steps.map((s) => (
-          <div class="step-card">
-            <div class="step-num">{s.n}</div>
-            <h3>{s.title}</h3>
-            <p>{s.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-  <section class="section--surface">
-    <div class="container">
-      <SectionHeader title={t('roof.formTitle')} />
-      <MockForm fields={fields} submitLabel={t('btn.submit')} />
-    </div>
-  </section>
-</BaseLayout>
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <link rel="canonical" href={target} />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href={target}>Garden Designer</a>…</p>
+  </body>
+</html>
